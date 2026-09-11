@@ -1,2 +1,2 @@
 # DataMind-AI
-AI-powered multi-agent data analysis platform
+Autonomous Multi-Agent Data Science Assistant
