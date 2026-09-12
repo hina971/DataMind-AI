@@ -214,49 +214,12 @@ if "result" in st.session_state:
 # FOOTER
 # ============================================================
 
-st.markdown("---")
+# Footer
 
-st.markdown(
-    """
-    <div style="
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 20px;
-    ">
+st.divider()
 
-        <div style="font-size: 24px; font-weight: 600;">
-            🧠 DataMind AI
-        </div>
-
-        <div style="
-            font-size: 16px;
-            margin-top: 8px;
-        ">
-            Developed by <b>Hina Ramzan & Team</b>
-        </div>
-
-        <div style="
-            font-size: 14px;
-            margin-top: 8px;
-        ">
-            Team Members: Hina Ramzan • Ayesha • Member 3 • Member 4
-        </div>
-
-        <div style="
-            font-size: 13px;
-            margin-top: 8px;
-        ">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-
-        <div style="
-            font-size: 12px;
-            margin-top: 10px;
-        ">
-            © 2026 DataMind AI Team
-        </div>
-
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown("### 🧠 DataMind AI")
+st.write("Developed by Hina Ramzan & Team")
+st.write("Team Members: Hina Ramzan • Ayesha • Member 3 • Member 4")
+st.write("Autonomous Multi-Agent Data Science Assistant")
+st.caption("© 2026 DataMind AI Team")
