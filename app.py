@@ -96,8 +96,7 @@ if st.button(
 
 
     # Display agent activity
-    # Do NOT append the message here.
-    # AnalysisState.add_log() already appends it.
+    # AnalysisState.add_log() already adds the message
     def log(msg):
         log_box.markdown(
             "### Agent Activity\n"
@@ -209,30 +208,54 @@ if "result" in st.session_state:
     st.markdown(
         state.final_report
     )
-# Footer
+
+
+# ============================================================
+# FOOTER
+# ============================================================
+
 st.markdown("---")
 
 st.markdown(
     """
-    <div style="text-align: center; padding: 15px 0;">
-        <h4>🧠 DataMind AI</h4>
+    <div style="
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 20px;
+    ">
 
-        <p>
-            <strong>Developed by Hina Ramzan & Team</strong>
-        </p>
+        <div style="font-size: 24px; font-weight: 600;">
+            🧠 DataMind AI
+        </div>
 
-        <p>
-            Team Members:
-            Hina Ramzan • Ayesha • Member 3 • Member 4
-        </p>
+        <div style="
+            font-size: 16px;
+            margin-top: 8px;
+        ">
+            Developed by <b>Hina Ramzan & Team</b>
+        </div>
 
-        <p style="font-size: 14px;">
+        <div style="
+            font-size: 14px;
+            margin-top: 8px;
+        ">
+            Team Members: Hina Ramzan • Ayesha • Member 3 • Member 4
+        </div>
+
+        <div style="
+            font-size: 13px;
+            margin-top: 8px;
+        ">
             Autonomous Multi-Agent Data Science Assistant
-        </p>
+        </div>
 
-        <p style="font-size: 12px; color: gray;">
+        <div style="
+            font-size: 12px;
+            margin-top: 10px;
+        ">
             © 2026 DataMind AI Team
-        </p>
+        </div>
+
     </div>
     """,
     unsafe_allow_html=True
