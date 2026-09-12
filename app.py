@@ -56,7 +56,7 @@ if st.button("🚀 Analyze Dataset", type="primary", use_container_width=True):
         "### Agent Activity\n" +
         "\n".join(f"- {x}" for x in state.activity_log)
     )
-
+    
     state.log = log
     result = orchestrator.run(state)
 
