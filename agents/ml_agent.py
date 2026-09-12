@@ -1,20 +1,87 @@
+from tools.ml_tools import run_ml_analysis
 
-import re
-from tools.ml_tools import choose_target, regression_models
 
 class MLAgent:
-    name="ML Agent"
-    def run(self,state):
-        state.add_log("[ML Agent] Preparing machine-learning analysis...")
-        text=state.user_request.lower()
-        requested=None
-        for col in state.dataframe.columns:
-            if col.lower() in text:
-                requested=col; break
-        target=choose_target(state.dataframe,requested)
-        if target is None:
-            state.ml_results={"status":"NOT_APPLICABLE","message":"No numeric target detected."}
+
+    name = "ML Agent"
+
+    def run(self, state):
+
+        state.add_log(
+            "[ML Agent] Automatically identifying the prediction task..."
+        )
+
+        df = state.dataframe
+
+        # --------------------------------------------------
+        # Run automatic ML analysis
+        # --------------------------------------------------
+
+        results = run_ml_analysis(df)
+
+        # --------------------------------------------------
+        # Handle result
+        # --------------------------------------------------
+
+        if not results:
+
+            state.ml_results = {
+                "status": "FAILED",
+                "message": "ML analysis could not be completed."
+            }
+
+            state.add_log(
+                "[ML Agent] ML analysis could not be completed."
+            )
+
+            return state
+
+        # Save results
+        state.ml_results = results
+
+        # --------------------------------------------------
+        # Logging
+        # --------------------------------------------------
+
+        problem_type = results.get(
+            "problem_type",
+            "unknown"
+        )
+
+        target = results.get(
+            "target",
+            "not identified"
+        )
+
+        best_model = results.get(
+            "best_model",
+            "not available"
+        )
+
+        if problem_type == "classification":
+
+            state.add_log(
+                f"[ML Agent] Classification problem detected. "
+                f"Target: {target}"
+            )
+
+        elif problem_type == "regression":
+
+            state.add_log(
+                f"[ML Agent] Regression problem detected. "
+                f"Target: {target}"
+            )
+
         else:
-            state.ml_results=regression_models(state.dataframe,target)
-            state.add_log(f"[ML Agent] Regression target selected: {target}")
+
+            state.add_log(
+                f"[ML Agent] Problem type: {problem_type}. "
+                f"Target: {target}"
+            )
+
+        state.add_log(
+            f"[ML Agent] Models evaluated. "
+            f"Best model: {best_model}"
+        )
+
         return state
