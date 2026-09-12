@@ -220,6 +220,6 @@ st.divider()
 
 st.markdown("### 🧠 DataMind AI")
 st.write("Developed by Hina Ramzan & Team")
-st.write("Team Members: Hina Ramzan • Ayesha • Member 3 • Member 4")
+st.write("Team Members: Hina Ramzan • Fayaz Ali • Nisha shabbir • Moin Afzal • Abdul Samad • Talal Azhar ")
 st.write("Autonomous Multi-Agent Data Science Assistant")
 st.caption("© 2026 DataMind AI Team")
