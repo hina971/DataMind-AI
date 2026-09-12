@@ -147,11 +147,78 @@ if "result" in st.session_state:
     )
 
 
-    with st.expander(
-        "Data Quality Details",
-        expanded=True
-    ):
-        st.json(q)
+    
+    with st.expander("🔍 Data Quality Details", expanded=True):
+
+    st.markdown(
+        f"""
+        ### Dataset Quality Overview
+
+        The dataset contains **{q.get("rows", 0):,} observations**
+        and **{q.get("columns", 0)} variables**.
+
+        The automated Data Quality Agent checked the dataset for
+        missing values, duplicate records, constant variables,
+        data types, and potential statistical outliers.
+        """
+    )
+
+    # Missing values
+    missing = q.get("missing_by_column", {})
+
+    if missing:
+        st.markdown("#### ⚠️ Missing Values")
+
+        for column, info in missing.items():
+            st.write(
+                f"**{column}** contains "
+                f"{info.get('count', 0)} missing values "
+                f"({info.get('percent', 0):.2f}%)."
+            )
+    else:
+        st.success("✅ No missing values were detected.")
+
+    # Duplicates
+    if q.get("duplicate_rows", 0) > 0:
+        st.warning(
+            f"⚠️ {q.get('duplicate_rows')} duplicate rows were detected."
+        )
+    else:
+        st.success("✅ No duplicate rows were detected.")
+
+    # Constant columns
+    constants = q.get("constant_columns", [])
+
+    if constants:
+        st.warning(
+            "Constant variables detected: "
+            + ", ".join(constants)
+        )
+
+    # Outliers
+    outliers = q.get("outliers", {})
+
+    if outliers:
+
+        st.markdown("#### 📌 Potential Outliers")
+
+        found = False
+
+        for column, info in outliers.items():
+
+            count = info.get("iqr_outliers", 0)
+            percent = info.get("outlier_percent", 0)
+
+            if count > 0:
+                found = True
+
+                st.write(
+                    f"**{column}**: {count:,} potential outliers "
+                    f"({percent:.2f}% of available observations)."
+                )
+
+        if not found:
+            st.success("✅ No IQR-based outliers were detected.")
 
 
     if state.statistical_results:
