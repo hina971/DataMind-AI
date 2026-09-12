@@ -52,8 +52,10 @@ if st.button("🚀 Analyze Dataset", type="primary", use_container_width=True):
     log_box = st.empty()
 
     def log(msg):
-        state.activity_log.append(msg)
-        log_box.markdown("### Agent Activity\n" + "\n".join(f"- {x}" for x in state.activity_log))
+    log_box.markdown(
+        "### Agent Activity\n" +
+        "\n".join(f"- {x}" for x in state.activity_log)
+    )
 
     state.log = log
     result = orchestrator.run(state)
