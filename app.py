@@ -209,3 +209,31 @@ if "result" in st.session_state:
     st.markdown(
         state.final_report
     )
+# Footer
+st.markdown("---")
+
+st.markdown(
+    """
+    <div style="text-align: center; padding: 15px 0;">
+        <h4>🧠 DataMind AI</h4>
+
+        <p>
+            <strong>Developed by Hina Ramzan & Team</strong>
+        </p>
+
+        <p>
+            Team Members:
+            Hina Ramzan • Ayesha • Member 3 • Member 4
+        </p>
+
+        <p style="font-size: 14px;">
+            Autonomous Multi-Agent Data Science Assistant
+        </p>
+
+        <p style="font-size: 12px; color: gray;">
+            © 2026 DataMind AI Team
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
