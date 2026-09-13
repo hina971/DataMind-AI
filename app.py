@@ -926,40 +926,285 @@ if "result" in st.session_state:
     )
 
 
-# ============================================================
-# FOOTER
-# ============================================================
+# =========================================================
+# DATAMIND AI — ANIMATED FOOTER
+# =========================================================
 
 st.divider()
 
+components.html(
+    """
+    <style>
 
-footer_left, footer_center, footer_right = st.columns(
-    [1, 3, 1]
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-box {
+
+            min-height: 230px;
+
+            border-radius: 22px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            background: linear-gradient(
+                120deg,
+                #0f172a,
+                #1e3a8a,
+                #2563eb,
+                #0f766e,
+                #0f172a
+            );
+
+            background-size: 400% 400%;
+
+            animation:
+                footerGradient 9s ease infinite;
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.25);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .footer-title {
+
+            position: relative;
+            z-index: 2;
+
+            color: white;
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            animation:
+                footerGlow 3s ease-in-out infinite;
+        }
+
+
+        .footer-subtitle {
+
+            position: relative;
+            z-index: 2;
+
+            color: #dbeafe;
+
+            font-size: 15px;
+
+            margin-top: 7px;
+
+            font-weight: 500;
+        }
+
+
+        .footer-team {
+
+            position: relative;
+            z-index: 2;
+
+            color: #e5e7eb;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin-top: 18px;
+        }
+
+
+        .footer-developer {
+
+            color: white;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+
+        .footer-members {
+
+            color: #dbeafe;
+
+            font-size: 13px;
+        }
+
+
+        .footer-copy {
+
+            position: relative;
+            z-index: 2;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            margin-top: 18px;
+        }
+
+
+        .footer-bubble-one {
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.06);
+
+            left: -55px;
+            bottom: -70px;
+
+            animation:
+                bubbleOne 7s ease-in-out infinite;
+        }
+
+
+        .footer-bubble-two {
+
+            position: absolute;
+
+            width: 190px;
+            height: 190px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.05);
+
+            right: -65px;
+            top: -90px;
+
+            animation:
+                bubbleTwo 8s ease-in-out infinite;
+        }
+
+
+        @keyframes footerGradient {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+
+        }
+
+
+        @keyframes footerGlow {
+
+            0%, 100% {
+
+                transform: scale(1);
+
+                text-shadow:
+                    0 0 5px rgba(255,255,255,0.2);
+            }
+
+            50% {
+
+                transform: scale(1.035);
+
+                text-shadow:
+                    0 0 12px rgba(255,255,255,0.65),
+                    0 0 28px rgba(147,197,253,0.6);
+            }
+
+        }
+
+
+        @keyframes bubbleOne {
+
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(35px, -25px);
+            }
+
+        }
+
+
+        @keyframes bubbleTwo {
+
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-35px, 30px);
+            }
+
+        }
+
+    </style>
+
+
+    <div class="footer-box">
+
+        <div class="footer-bubble-one"></div>
+        <div class="footer-bubble-two"></div>
+
+
+        <div class="footer-title">
+            🧠 DataMind AI
+        </div>
+
+
+        <div class="footer-subtitle">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+
+
+        <div class="footer-team">
+
+            <div class="footer-developer">
+                Developed by Hina Ramzan &amp; Team
+            </div>
+
+            <div class="footer-members">
+                Team Members:
+                Hina Ramzan • Fayaz Ali • Nisha Shabbir •
+                Moin Afzal • Abdul Samad • Talal Azhar
+            </div>
+
+        </div>
+
+
+        <div class="footer-copy">
+            © 2026 DataMind AI Team
+        </div>
+
+    </div>
+    """,
+
+    height=255,
+
+    scrolling=False
 )
-
-with footer_center:
-
-    st.markdown(
-        """
-        ## 🧠 DataMind AI
-        """,
-        unsafe_allow_html=False
-    )
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
-
-    st.write(
-        "**Developed by Hina Ramzan & Team**"
-    )
-
-    st.write(
-        "Team Members: Hina Ramzan • Fayaz Ali • "
-        "Nisha Shabbir • Moin Afzal • "
-        "Abdul Samad • Talal Azhar"
-    )
-
-    st.caption(
-        "© 2026 DataMind AI Team"
-    )
