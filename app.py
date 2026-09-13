@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 import streamlit.components.v1 as components
 
+
 from core.data_loader import load_dataframe
 from core.analysis_state import AnalysisState
 from agents.orchestrator_agent import OrchestratorAgent
@@ -927,7 +928,7 @@ if "result" in st.session_state:
 
 
 # =========================================================
-# DATAMIND AI — ANIMATED FOOTER
+# MULTI-AGENTS PROJECT — ANIMATED FOOTER
 # =========================================================
 
 st.divider()
@@ -945,46 +946,51 @@ components.html(
 
         .footer-box {
 
-            min-height: 230px;
+            min-height: 210px;
+
+            width: 100%;
 
             border-radius: 22px;
 
             display: flex;
+
             flex-direction: column;
 
             justify-content: center;
+
             align-items: center;
 
             text-align: center;
 
-            padding: 30px 20px;
-
             background: linear-gradient(
                 120deg,
-                #0f172a,
+                #172554,
                 #1e3a8a,
                 #2563eb,
                 #0f766e,
-                #0f172a
+                #172554
             );
 
             background-size: 400% 400%;
 
             animation:
-                footerGradient 9s ease infinite;
+                gradientAnimation 8s ease infinite;
 
             box-shadow:
                 0 12px 30px rgba(0,0,0,0.25);
 
-            position: relative;
+            padding: 25px;
 
             overflow: hidden;
+
+            position: relative;
         }
 
 
         .footer-title {
 
             position: relative;
+
             z-index: 2;
 
             color: white;
@@ -993,31 +999,33 @@ components.html(
 
             font-weight: 900;
 
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
 
             animation:
-                footerGlow 3s ease-in-out infinite;
+                titlePulse 2.8s ease-in-out infinite;
         }
 
 
         .footer-subtitle {
 
             position: relative;
+
             z-index: 2;
 
             color: #dbeafe;
 
-            font-size: 15px;
+            font-size: 16px;
 
-            margin-top: 7px;
+            font-weight: 600;
 
-            font-weight: 500;
+            margin-top: 8px;
         }
 
 
-        .footer-team {
+        .footer-members {
 
             position: relative;
+
             z-index: 2;
 
             color: #e5e7eb;
@@ -1030,76 +1038,47 @@ components.html(
         }
 
 
-        .footer-developer {
-
-            color: white;
-
-            font-weight: 700;
-
-            margin-bottom: 5px;
-        }
-
-
-        .footer-members {
-
-            color: #dbeafe;
-
-            font-size: 13px;
-        }
-
-
         .footer-copy {
 
             position: relative;
+
             z-index: 2;
 
-            color: #94a3b8;
+            color: #bfdbfe;
 
             font-size: 12px;
 
-            margin-top: 18px;
+            margin-top: 16px;
         }
 
 
-        .footer-bubble-one {
+        .footer-badge {
 
-            position: absolute;
+            position: relative;
 
-            width: 160px;
-            height: 160px;
+            z-index: 2;
 
-            border-radius: 50%;
+            margin-top: 14px;
 
-            background: rgba(255,255,255,0.06);
+            padding: 6px 16px;
 
-            left: -55px;
-            bottom: -70px;
+            border-radius: 30px;
 
-            animation:
-                bubbleOne 7s ease-in-out infinite;
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(255,255,255,0.22);
+
+            backdrop-filter: blur(5px);
         }
 
 
-        .footer-bubble-two {
-
-            position: absolute;
-
-            width: 190px;
-            height: 190px;
-
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.05);
-
-            right: -65px;
-            top: -90px;
-
-            animation:
-                bubbleTwo 8s ease-in-out infinite;
-        }
-
-
-        @keyframes footerGradient {
+        @keyframes gradientAnimation {
 
             0% {
                 background-position: 0% 50%;
@@ -1116,7 +1095,7 @@ components.html(
         }
 
 
-        @keyframes footerGlow {
+        @keyframes titlePulse {
 
             0%, 100% {
 
@@ -1132,33 +1111,7 @@ components.html(
 
                 text-shadow:
                     0 0 12px rgba(255,255,255,0.65),
-                    0 0 28px rgba(147,197,253,0.6);
-            }
-
-        }
-
-
-        @keyframes bubbleOne {
-
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(35px, -25px);
-            }
-
-        }
-
-
-        @keyframes bubbleTwo {
-
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(-35px, 30px);
+                    0 0 28px rgba(147,197,253,0.65);
             }
 
         }
@@ -1168,32 +1121,28 @@ components.html(
 
     <div class="footer-box">
 
-        <div class="footer-bubble-one"></div>
-        <div class="footer-bubble-two"></div>
-
-
         <div class="footer-title">
-            🧠 DataMind AI
+            🧠 MultiAgents Project
         </div>
 
 
         <div class="footer-subtitle">
-            Autonomous Multi-Agent Data Science Assistant
+            Developed by Hina Ramzan &amp; Team
         </div>
 
 
-        <div class="footer-team">
+        <div class="footer-members">
 
-            <div class="footer-developer">
-                Developed by Hina Ramzan &amp; Team
-            </div>
+            Team Members:<br>
 
-            <div class="footer-members">
-                Team Members:
-                Hina Ramzan • Fayaz Ali • Nisha Shabbir •
-                Moin Afzal • Abdul Samad • Talal Azhar
-            </div>
+            Hina Ramzan • Fayaz Ali • Nisha Shabbir •
+            Moin Afzal • Abdul Samad • Talal Azhar
 
+        </div>
+
+
+        <div class="footer-badge">
+            🤖 Autonomous Multi-Agent Data Science
         </div>
 
 
@@ -1203,8 +1152,6 @@ components.html(
 
     </div>
     """,
-
-    height=255,
-
+    height=235,
     scrolling=False
 )
