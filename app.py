@@ -22,20 +22,22 @@ st.set_page_config(
 # HEADER
 # ============================================================
 
-st.markdown(
-    """
-    <div style="text-align: center; padding: 15px 0 25px 0;">
-        <div style="font-size: 42px; font-weight: 700;">
-            🧠 DataMind AI
-        </div>
-
-        <div style="font-size: 18px; margin-top: 5px;">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
+header_left, header_center, header_right = st.columns(
+    [1, 3, 1]
 )
+
+with header_center:
+
+    st.markdown(
+        """
+        # 🧠 DataMind AI
+        """,
+        unsafe_allow_html=False
+    )
+
+    st.caption(
+        "Autonomous Multi-Agent Data Science Assistant"
+    )
 
 
 # ============================================================
@@ -833,53 +835,34 @@ if "result" in st.session_state:
 
 st.divider()
 
-st.markdown(
-    """
-    <div style="
-        text-align: center;
-        padding: 30px 20px;
-        margin-top: 20px;
-    ">
 
-        <div style="
-            font-size: 26px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        ">
-            🧠 DataMind AI
-        </div>
-
-        <div style="
-            font-size: 16px;
-            margin-bottom: 12px;
-        ">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-
-        <div style="
-            margin-bottom: 8px;
-        ">
-            <strong>Developed by Hina Ramzan & Team</strong>
-        </div>
-
-        <div style="
-            font-size: 14px;
-            margin-bottom: 8px;
-        ">
-            Team Members: Hina Ramzan • Fayaz Ali •
-            Nisha Shabbir • Moin Afzal •
-            Abdul Samad • Talal Azhar
-        </div>
-
-        <div style="
-            font-size: 13px;
-            opacity: 0.7;
-            margin-top: 15px;
-        ">
-            © 2026 DataMind AI Team
-        </div>
-
-    </div>
-    """,
-    unsafe_allow_html=True
+footer_left, footer_center, footer_right = st.columns(
+    [1, 3, 1]
 )
+
+with footer_center:
+
+    st.markdown(
+        """
+        ## 🧠 DataMind AI
+        """,
+        unsafe_allow_html=False
+    )
+
+    st.caption(
+        "Autonomous Multi-Agent Data Science Assistant"
+    )
+
+    st.write(
+        "**Developed by Hina Ramzan & Team**"
+    )
+
+    st.write(
+        "Team Members: Hina Ramzan • Fayaz Ali • "
+        "Nisha Shabbir • Moin Afzal • "
+        "Abdul Samad • Talal Azhar"
+    )
+
+    st.caption(
+        "© 2026 DataMind AI Team"
+    )
