@@ -19,190 +19,78 @@ st.set_page_config(
 
 
 # ============================================================
-# CUSTOM PROFESSIONAL THEME
-# ============================================================
-
-st.markdown(
-    """
-    <style>
-
-    /* ======================================================
-       MAIN APP BACKGROUND
-       ====================================================== */
-
-    .stApp {
-        background: linear-gradient(
-            135deg,
-            #f8fbff 0%,
-            #eef5ff 50%,
-            #f8f9ff 100%
-        );
-    }
-
-
-    /* ======================================================
-       HEADER CARD
-       ====================================================== */
-
-    .datamind-header {
-        background: linear-gradient(
-            135deg,
-            #0f172a,
-            #1e3a8a,
-            #2563eb
-        );
-
-        padding: 32px 25px;
-        border-radius: 20px;
-
-        text-align: center;
-
-        margin-top: 10px;
-        margin-bottom: 28px;
-
-        box-shadow:
-            0 10px 30px rgba(37, 99, 235, 0.25);
-
-        border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-
-    .datamind-title {
-        font-size: 42px;
-        font-weight: 800;
-
-        color: white;
-
-        letter-spacing: 0.5px;
-
-        margin-bottom: 8px;
-    }
-
-
-    .datamind-subtitle {
-        font-size: 18px;
-        font-weight: 400;
-
-        color: rgba(255, 255, 255, 0.88);
-
-        letter-spacing: 0.3px;
-    }
-
-
-    /* ======================================================
-       FOOTER CARD
-       ====================================================== */
-
-    .datamind-footer {
-        background: linear-gradient(
-            135deg,
-            #0f172a,
-            #172554,
-            #1e40af
-        );
-
-        padding: 30px 25px;
-
-        border-radius: 20px;
-
-        text-align: center;
-
-        margin-top: 35px;
-        margin-bottom: 15px;
-
-        box-shadow:
-            0 10px 30px rgba(15, 23, 42, 0.25);
-
-        border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-
-    .footer-title {
-        font-size: 28px;
-        font-weight: 750;
-
-        color: white;
-
-        margin-bottom: 8px;
-    }
-
-
-    .footer-subtitle {
-        font-size: 15px;
-
-        color: rgba(255, 255, 255, 0.82);
-
-        margin-bottom: 18px;
-    }
-
-
-    .footer-team {
-        font-size: 14px;
-
-        color: rgba(255, 255, 255, 0.78);
-
-        line-height: 1.7;
-    }
-
-
-    .footer-copy {
-        font-size: 12px;
-
-        color: rgba(255, 255, 255, 0.60);
-
-        margin-top: 18px;
-    }
-
-
-    /* ======================================================
-       SECTION SPACING
-       ====================================================== */
-
-    div[data-testid="stExpander"] {
-        border-radius: 14px;
-    }
-
-
-    /* ======================================================
-       METRIC CARDS
-       ====================================================== */
-
-    div[data-testid="stMetric"] {
-        background: white;
-
-        padding: 15px;
-
-        border-radius: 14px;
-
-        box-shadow:
-            0 4px 14px rgba(15, 23, 42, 0.08);
-
-        border: 1px solid #e5e7eb;
-    }
-
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# ============================================================
 # HEADER
 # ============================================================
 
 st.markdown(
     """
-    <div class="datamind-header">
+    <style>
+    .header-box {
+        background: linear-gradient(135deg, #0f172a, #1d4ed8);
+        padding: 28px;
+        border-radius: 18px;
+        text-align: center;
+        margin-bottom: 25px;
+        box-shadow: 0 8px 25px rgba(30, 64, 175, 0.25);
+    }
 
-        <div class="datamind-title">
-            🧠 DataMind AI
-        </div>
+    .header-title {
+        color: white;
+        font-size: 38px;
+        font-weight: 800;
+        margin-bottom: 6px;
+    }
 
-        <div class="datamind-subtitle">
+    .header-subtitle {
+        color: #dbeafe;
+        font-size: 17px;
+    }
+
+    .footer-box {
+        background: linear-gradient(135deg, #111827, #1e3a8a);
+        padding: 28px;
+        border-radius: 18px;
+        text-align: center;
+        margin-top: 35px;
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.25);
+    }
+
+    .footer-title {
+        color: white;
+        font-size: 27px;
+        font-weight: 800;
+        margin-bottom: 6px;
+    }
+
+    .footer-subtitle {
+        color: #dbeafe;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .footer-team {
+        color: #e5e7eb;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .footer-copy {
+        color: #94a3b8;
+        font-size: 12px;
+        margin-top: 15px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div class="header-box">
+        <div class="header-title">🧠 DataMind AI</div>
+        <div class="header-subtitle">
             Autonomous Multi-Agent Data Science Assistant
         </div>
-
     </div>
     """,
     unsafe_allow_html=True
@@ -329,7 +217,7 @@ if st.button(
 
 
     # --------------------------------------------------------
-    # Agent Activity Display
+    # AGENT ACTIVITY
     # --------------------------------------------------------
 
     def log(msg):
@@ -346,7 +234,7 @@ if st.button(
 
 
     # --------------------------------------------------------
-    # Run Orchestrator
+    # RUN ORCHESTRATOR
     # --------------------------------------------------------
 
     result = orchestrator.run(state)
@@ -423,7 +311,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # Missing Values
+        # MISSING VALUES
         # ----------------------------------------------------
 
         missing = q.get(
@@ -453,7 +341,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # Duplicate Rows
+        # DUPLICATES
         # ----------------------------------------------------
 
         if q.get(
@@ -474,7 +362,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # Constant Columns
+        # CONSTANT COLUMNS
         # ----------------------------------------------------
 
         constants = q.get(
@@ -497,7 +385,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # Outliers
+        # OUTLIERS
         # ----------------------------------------------------
 
         outliers = q.get(
@@ -573,7 +461,7 @@ if "result" in st.session_state:
 
 
             # ------------------------------------------------
-            # Correlations
+            # CORRELATIONS
             # ------------------------------------------------
 
             pearson = stats.get(
@@ -693,7 +581,7 @@ if "result" in st.session_state:
 
 
                 # ------------------------------------------------
-                # Information Overlap
+                # INFORMATION OVERLAP
                 # ------------------------------------------------
 
                 overlap_warnings = stats.get(
@@ -715,7 +603,7 @@ if "result" in st.session_state:
 
 
             # ------------------------------------------------
-            # Normality
+            # NORMALITY
             # ------------------------------------------------
 
             normality = stats.get(
@@ -810,7 +698,7 @@ if "result" in st.session_state:
 
 
             # ------------------------------------------------
-            # Model Comparison
+            # MODEL COMPARISON
             # ------------------------------------------------
 
             models = ml.get(
@@ -885,10 +773,6 @@ if "result" in st.session_state:
 
             if figures:
 
-                # ------------------------------------------------
-                # Two Visualizations Per Row
-                # ------------------------------------------------
-
                 for i in range(
                     0,
                     len(figures),
@@ -900,14 +784,12 @@ if "result" in st.session_state:
                         gap="medium"
                     )
 
-
                     with col1:
 
                         st.image(
                             figures[i],
                             width=400
                         )
-
 
                     if i + 1 < len(figures):
 
@@ -1000,7 +882,7 @@ if "result" in st.session_state:
 
 st.markdown(
     """
-    <div class="datamind-footer">
+    <div class="footer-box">
 
         <div class="footer-title">
             🧠 DataMind AI
