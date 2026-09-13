@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
+
 from core.data_loader import load_dataframe
 from core.analysis_state import AnalysisState
 from agents.orchestrator_agent import OrchestratorAgent
@@ -187,7 +188,7 @@ if "result" in st.session_state:
 
     st.subheader("🔍 Dataset Quality")
 
-    q = state.quality_results
+    q = state.quality_results or {}
 
     c1, c2, c3, c4 = st.columns(4)
 
@@ -276,7 +277,7 @@ if "result" in st.session_state:
         ) > 0:
 
             st.warning(
-                f"⚠️ {q.get('duplicate_rows')} "
+                f"⚠️ {q.get('duplicate_rows'):,} "
                 f"duplicate rows were detected."
             )
 
@@ -486,11 +487,17 @@ if "result" in st.session_state:
                         strength = "weak"
 
 
-                    direction = (
-                        "positive"
-                        if value > 0
-                        else "negative"
-                    )
+                    if value > 0:
+
+                        direction = "positive"
+
+                    elif value < 0:
+
+                        direction = "negative"
+
+                    else:
+
+                        direction = "negligible"
 
 
                     st.write(
@@ -498,6 +505,28 @@ if "result" in st.session_state:
                         f"{strength} {direction} relationship "
                         f"(Pearson r = {value:.3f})."
                     )
+
+
+                # ------------------------------------------------
+                # Information Overlap
+                # ------------------------------------------------
+
+                overlap_warnings = stats.get(
+                    "overlap_warnings",
+                    []
+                )
+
+                if overlap_warnings:
+
+                    st.markdown(
+                        "#### ⚠️ Potential Information Overlap"
+                    )
+
+                    for warning in overlap_warnings:
+
+                        st.warning(
+                            warning
+                        )
 
 
             # ------------------------------------------------
@@ -671,12 +700,38 @@ if "result" in st.session_state:
 
             if figures:
 
-                for fig_path in figures:
+                # ------------------------------------------------
+                # Two Visualizations Per Row
+                # ------------------------------------------------
 
-                    st.image(
-                        fig_path,
-                        use_container_width=True
+                for i in range(
+                    0,
+                    len(figures),
+                    2
+                ):
+
+                    col1, col2 = st.columns(
+                        2,
+                        gap="medium"
                     )
+
+                    # First figure
+                    with col1:
+
+                        st.image(
+                            figures[i],
+                            width=400
+                        )
+
+                    # Second figure
+                    if i + 1 < len(figures):
+
+                        with col2:
+
+                            st.image(
+                                figures[i + 1],
+                                width=400
+                            )
 
             else:
 
@@ -694,7 +749,7 @@ if "result" in st.session_state:
         expanded=True
     ):
 
-        review = state.reviewer_results
+        review = state.reviewer_results or {}
 
         reliability = review.get(
             "reliability",
