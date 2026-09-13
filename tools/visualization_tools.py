@@ -29,8 +29,9 @@ def create_correlation_heatmap(df):
 
     ensure_output_dir()
 
+    # Compact figure size
     fig, ax = plt.subplots(
-        figsize=(10, 7)
+        figsize=(7, 5)
     )
 
     correlation = numeric.corr()
@@ -50,11 +51,13 @@ def create_correlation_heatmap(df):
 
     ax.set_xticklabels(
         correlation.columns,
-        rotation=90
+        rotation=90,
+        fontsize=8
     )
 
     ax.set_yticklabels(
-        correlation.columns
+        correlation.columns,
+        fontsize=8
     )
 
     fig.colorbar(
@@ -63,7 +66,8 @@ def create_correlation_heatmap(df):
     )
 
     ax.set_title(
-        "Correlation Heatmap"
+        "Correlation Heatmap",
+        fontsize=11
     )
 
     fig.tight_layout()
@@ -104,8 +108,9 @@ def create_distributions(df):
     # Plot ALL numerical variables
     for column in numeric.columns:
 
+        # Compact figure size
         fig, ax = plt.subplots(
-            figsize=(8, 5)
+            figsize=(6, 4)
         )
 
         ax.hist(
@@ -114,15 +119,23 @@ def create_distributions(df):
         )
 
         ax.set_title(
-            f"Distribution of {column}"
+            f"Distribution of {column}",
+            fontsize=10
         )
 
         ax.set_xlabel(
-            column
+            column,
+            fontsize=9
         )
 
         ax.set_ylabel(
-            "Frequency"
+            "Frequency",
+            fontsize=9
+        )
+
+        ax.tick_params(
+            axis="both",
+            labelsize=8
         )
 
         fig.tight_layout()
@@ -170,8 +183,9 @@ def create_boxplots(df):
 
     for column in numeric.columns:
 
+        # Compact figure size
         fig, ax = plt.subplots(
-            figsize=(8, 5)
+            figsize=(6, 4)
         )
 
         ax.boxplot(
@@ -179,11 +193,18 @@ def create_boxplots(df):
         )
 
         ax.set_title(
-            f"Outlier Boxplot — {column}"
+            f"Outlier Boxplot — {column}",
+            fontsize=10
         )
 
         ax.set_ylabel(
-            column
+            column,
+            fontsize=9
+        )
+
+        ax.tick_params(
+            axis="both",
+            labelsize=8
         )
 
         fig.tight_layout()
@@ -232,8 +253,9 @@ def create_missing_values_chart(df):
 
     ensure_output_dir()
 
+    # Compact figure size
     fig, ax = plt.subplots(
-        figsize=(10, 5)
+        figsize=(7, 4)
     )
 
     ax.bar(
@@ -242,20 +264,29 @@ def create_missing_values_chart(df):
     )
 
     ax.set_title(
-        "Missing Values by Variable"
+        "Missing Values by Variable",
+        fontsize=11
     )
 
     ax.set_xlabel(
-        "Variable"
+        "Variable",
+        fontsize=9
     )
 
     ax.set_ylabel(
-        "Missing Count"
+        "Missing Count",
+        fontsize=9
     )
 
     ax.tick_params(
         axis="x",
-        rotation=45
+        rotation=45,
+        labelsize=8
+    )
+
+    ax.tick_params(
+        axis="y",
+        labelsize=8
     )
 
     fig.tight_layout()
@@ -306,8 +337,9 @@ def create_model_performance_plot(
         models.keys()
     )
 
+    # Compact figure size
     fig, ax = plt.subplots(
-        figsize=(10, 6)
+        figsize=(7, 4)
     )
 
     if problem_type == "classification":
@@ -326,11 +358,13 @@ def create_model_performance_plot(
         )
 
         ax.set_ylabel(
-            "Weighted F1 Score"
+            "Weighted F1 Score",
+            fontsize=9
         )
 
         ax.set_title(
-            "Classification Model Performance"
+            "Classification Model Performance",
+            fontsize=11
         )
 
     else:
@@ -349,16 +383,24 @@ def create_model_performance_plot(
         )
 
         ax.set_ylabel(
-            "RMSE"
+            "RMSE",
+            fontsize=9
         )
 
         ax.set_title(
-            "Regression Model Performance"
+            "Regression Model Performance",
+            fontsize=11
         )
 
     ax.tick_params(
         axis="x",
-        rotation=30
+        rotation=30,
+        labelsize=8
+    )
+
+    ax.tick_params(
+        axis="y",
+        labelsize=8
     )
 
     fig.tight_layout()
