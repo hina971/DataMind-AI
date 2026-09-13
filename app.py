@@ -8,7 +8,7 @@ from agents.orchestrator_agent import OrchestratorAgent
 
 
 # =========================================================
-# PAGE CONFIG
+# PAGE CONFIGURATION
 # =========================================================
 
 st.set_page_config(
@@ -19,40 +19,20 @@ st.set_page_config(
 
 
 # =========================================================
-# PROFESSIONAL HEADER
+# HEADER
 # =========================================================
 
 st.markdown(
     """
-    <div style="
-        background: linear-gradient(135deg, #1e3a8a, #2563eb, #0f766e);
-        padding: 28px 30px;
-        border-radius: 16px;
-        margin-bottom: 22px;
-        text-align: center;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    ">
-        <div style="
-            color: white;
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        ">
-            🧠 DataMind AI
-        </div>
-
-        <div style="
-            color: #dbeafe;
-            font-size: 17px;
-            margin-top: 7px;
-            font-weight: 500;
-        ">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
+    # 🧠 DataMind AI
+    """
 )
+
+st.caption(
+    "Autonomous Multi-Agent Data Science Assistant"
+)
+
+st.divider()
 
 
 # =========================================================
@@ -225,31 +205,37 @@ if "result" in st.session_state:
             col1, col2, col3, col4 = st.columns(4)
 
             with col1:
+
                 st.metric(
                     "Rows",
                     f"{len(df):,}"
                 )
 
             with col2:
+
                 st.metric(
                     "Columns",
                     f"{len(df.columns):,}"
                 )
 
             with col3:
+
                 st.metric(
                     "Missing Cells",
                     f"{q.get('missing_cells', 0):,}"
                 )
 
             with col4:
+
                 st.metric(
                     "Duplicate Rows",
                     f"{q.get('duplicate_rows', 0):,}"
                 )
 
 
-            st.markdown("### 📌 Findings")
+            st.markdown(
+                "### 📌 Findings"
+            )
 
             findings = q.get(
                 "findings",
@@ -259,6 +245,7 @@ if "result" in st.session_state:
             if findings:
 
                 for finding in findings:
+
                     st.write(
                         f"• {finding}"
                     )
@@ -495,7 +482,10 @@ if "result" in st.session_state:
                             "Model": model_name
                         }
 
-                        if isinstance(metrics, dict):
+                        if isinstance(
+                            metrics,
+                            dict
+                        ):
 
                             for metric_name, value in metrics.items():
 
@@ -511,7 +501,9 @@ if "result" in st.session_state:
                                         4
                                     )
 
-                        model_rows.append(row)
+                        model_rows.append(
+                            row
+                        )
 
 
                     st.dataframe(
@@ -679,60 +671,28 @@ if "result" in st.session_state:
 
 
 # =========================================================
-# PROFESSIONAL FOOTER
+# FOOTER
 # =========================================================
 
+st.divider()
+
 st.markdown(
-    """
-    <div style="
-        margin-top: 45px;
-        padding: 28px 25px;
-        border-radius: 16px;
-        background: linear-gradient(135deg, #0f172a, #1e3a8a, #0f766e);
-        text-align: center;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-    ">
+    "## 🧠 DataMind AI"
+)
 
-        <div style="
-            color: white;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 0.4px;
-        ">
-            🧠 DataMind AI
-        </div>
+st.markdown(
+    "**Autonomous Multi-Agent Data Science Assistant**"
+)
 
-        <div style="
-            color: #dbeafe;
-            font-size: 15px;
-            margin-top: 7px;
-            font-weight: 500;
-        ">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
+st.write(
+    "Developed by Hina Ramzan & Team"
+)
 
-        <div style="
-            color: #e5e7eb;
-            font-size: 14px;
-            margin-top: 18px;
-            line-height: 1.8;
-        ">
-            <strong>Developed by Hina Ramzan &amp; Team</strong>
-            <br>
-            Team Members:
-            Hina Ramzan • Fayaz Ali • Nisha Shabbir •
-            Moin Afzal • Talal Azhar
-        </div>
+st.write(
+    "Team Members: Hina Ramzan • Fayaz Ali • "
+    "Nisha Shabbir • Moin Afzal • Talal Azhar"
+)
 
-        <div style="
-            color: #94a3b8;
-            font-size: 12px;
-            margin-top: 18px;
-        ">
-            © 2026 DataMind AI Team
-        </div>
-
-    </div>
-    """,
-    unsafe_allow_html=True
+st.caption(
+    "© 2026 DataMind AI Team"
 )
