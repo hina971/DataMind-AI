@@ -23,12 +23,17 @@ st.set_page_config(
 # ============================================================
 
 header_left, header_center, header_right = st.columns(
-    [1, 2, 1]
+    [1, 3, 1]
 )
 
 with header_center:
 
-    st.write("🧠 DataMind AI")
+    st.markdown(
+        """
+        # 🧠 DataMind AI
+        """,
+        unsafe_allow_html=False
+    )
 
     st.caption(
         "Autonomous Multi-Agent Data Science Assistant"
@@ -449,9 +454,7 @@ if "result" in st.session_state:
                             continue
 
 
-                # ------------------------------------------------
                 # Remove duplicate pairs
-                # ------------------------------------------------
 
                 unique = {}
 
@@ -839,8 +842,11 @@ footer_left, footer_center, footer_right = st.columns(
 
 with footer_center:
 
-    st.write(
-        "🧠 DataMind AI"
+    st.markdown(
+        """
+        ## 🧠 DataMind AI
+        """,
+        unsafe_allow_html=False
     )
 
     st.caption(
@@ -854,7 +860,7 @@ with footer_center:
     st.write(
         "Team Members: Hina Ramzan • Fayaz Ali • "
         "Nisha Shabbir • Moin Afzal • "
-        "Talal Azhar"
+        "Abdul Samad • Talal Azhar"
     )
 
     st.caption(
