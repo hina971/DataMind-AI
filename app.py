@@ -22,8 +22,32 @@ st.set_page_config(
 # HEADER
 # ============================================================
 
-st.title("🧠 DataMind AI")
-st.caption("Autonomous Multi-Agent Data Science Assistant")
+st.markdown(
+    """
+    <div style="
+        text-align: center;
+        padding: 15px 0 25px 0;
+    ">
+
+        <h1 style="
+            margin-bottom: 6px;
+            font-size: 42px;
+        ">
+            🧠 DataMind AI
+        </h1>
+
+        <p style="
+            font-size: 18px;
+            margin-top: 0;
+            opacity: 0.8;
+        ">
+            Autonomous Multi-Agent Data Science Assistant
+        </p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ============================================================
@@ -813,25 +837,53 @@ if "result" in st.session_state:
 # FOOTER
 # ============================================================
 
-st.divider()
-
 st.markdown(
-    "### 🧠 DataMind AI"
-)
+    """
+    <div style="
+        margin-top: 55px;
+        padding: 30px 20px;
+        text-align: center;
+        border-top: 1px solid rgba(128,128,128,0.3);
+    ">
 
-st.write(
-    "Developed by Hina Ramzan & Team"
-)
+        <h2 style="
+            margin-bottom: 8px;
+            font-size: 26px;
+        ">
+            🧠 DataMind AI
+        </h2>
 
-st.write(
-    "Team Members: Hina Ramzan • Fayaz Ali • "
-    "Nisha Shabbir • Moin Afzal • Abdul Samad • Talal Azhar"
-)
+        <p style="
+            font-size: 16px;
+            margin-bottom: 12px;
+        ">
+            Autonomous Multi-Agent Data Science Assistant
+        </p>
 
-st.write(
-    "Autonomous Multi-Agent Data Science Assistant"
-)
+        <p style="
+            margin-bottom: 8px;
+        ">
+            <strong>Developed by Hina Ramzan & Team</strong>
+        </p>
 
-st.caption(
-    "© 2026 DataMind AI Team"
+        <p style="
+            font-size: 14px;
+            margin-bottom: 8px;
+        ">
+            Team Members: Hina Ramzan • Fayaz Ali •
+            Nisha Shabbir • Moin Afzal •
+            Abdul Samad • Talal Azhar
+        </p>
+
+        <p style="
+            font-size: 13px;
+            opacity: 0.7;
+            margin-top: 15px;
+        ">
+            © 2026 DataMind AI Team
+        </p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
