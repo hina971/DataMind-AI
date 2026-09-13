@@ -7,9 +7,9 @@ from core.analysis_state import AnalysisState
 from agents.orchestrator_agent import OrchestratorAgent
 
 
-# ============================================================
-# PAGE CONFIGURATION
-# ============================================================
+# =========================================================
+# PAGE CONFIG
+# =========================================================
 
 st.set_page_config(
     page_title="DataMind AI",
@@ -18,121 +18,35 @@ st.set_page_config(
 )
 
 
-# ============================================================
-# PROFESSIONAL THEME
-# ============================================================
+# =========================================================
+# PROFESSIONAL HEADER
+# =========================================================
 
 st.markdown(
     """
-    <style>
-
-    /* ---------- Header ---------- */
-
-    .datamind-header {
-        background: linear-gradient(
-            135deg,
-            #0f172a 0%,
-            #1e3a8a 50%,
-            #2563eb 100%
-        );
-
-        padding: 30px 20px;
-        border-radius: 20px;
-
+    <div style="
+        background: linear-gradient(135deg, #1e3a8a, #2563eb, #0f766e);
+        padding: 28px 30px;
+        border-radius: 16px;
+        margin-bottom: 22px;
         text-align: center;
-
-        margin-top: 10px;
-        margin-bottom: 25px;
-
-        box-shadow:
-            0 8px 25px rgba(30, 64, 175, 0.25);
-    }
-
-
-    .datamind-title {
-        color: white;
-        font-size: 40px;
-        font-weight: 800;
-        margin-bottom: 6px;
-    }
-
-
-    .datamind-subtitle {
-        color: #dbeafe;
-        font-size: 17px;
-        font-weight: 400;
-    }
-
-
-    /* ---------- Footer ---------- */
-
-    .datamind-footer {
-        background: linear-gradient(
-            135deg,
-            #0f172a 0%,
-            #172554 50%,
-            #1e40af 100%
-        );
-
-        padding: 28px 20px;
-        border-radius: 20px;
-
-        text-align: center;
-
-        margin-top: 35px;
-        margin-bottom: 10px;
-
-        box-shadow:
-            0 8px 25px rgba(15, 23, 42, 0.25);
-    }
-
-
-    .datamind-footer-title {
-        color: white;
-        font-size: 28px;
-        font-weight: 800;
-        margin-bottom: 5px;
-    }
-
-
-    .datamind-footer-subtitle {
-        color: #dbeafe;
-        font-size: 15px;
-        margin-bottom: 15px;
-    }
-
-
-    .datamind-footer-team {
-        color: #e5e7eb;
-        font-size: 14px;
-        line-height: 1.7;
-    }
-
-
-    .datamind-footer-copy {
-        color: #94a3b8;
-        font-size: 12px;
-        margin-top: 15px;
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# ============================================================
-# HEADER
-# ============================================================
-
-st.markdown(
-    """
-    <div class="datamind-header">
-        <div class="datamind-title">
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    ">
+        <div style="
+            color: white;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        ">
             🧠 DataMind AI
         </div>
 
-        <div class="datamind-subtitle">
+        <div style="
+            color: #dbeafe;
+            font-size: 17px;
+            margin-top: 7px;
+            font-weight: 500;
+        ">
             Autonomous Multi-Agent Data Science Assistant
         </div>
     </div>
@@ -141,13 +55,13 @@ st.markdown(
 )
 
 
-# ============================================================
+# =========================================================
 # SIDEBAR
-# ============================================================
+# =========================================================
 
 with st.sidebar:
 
-    st.header("Dataset")
+    st.header("📂 Dataset")
 
     uploaded = st.file_uploader(
         "Upload CSV or Excel",
@@ -155,15 +69,15 @@ with st.sidebar:
     )
 
     st.info(
-        "The system uses specialized agents for "
-        "quality, statistics, machine learning, "
+        "DataMind AI uses specialized agents for "
+        "data quality, statistics, machine learning, "
         "visualization and reliability review."
     )
 
 
-# ============================================================
-# DATA LOADING
-# ============================================================
+# =========================================================
+# LOAD DATASET
+# =========================================================
 
 if uploaded:
 
@@ -211,12 +125,16 @@ elif "df" not in st.session_state:
         st.stop()
 
 
+# =========================================================
+# DATAFRAME
+# =========================================================
+
 df = st.session_state["df"]
 
 
-# ============================================================
+# =========================================================
 # DATASET PREVIEW
-# ============================================================
+# =========================================================
 
 with st.expander(
     "📋 Dataset Preview",
@@ -229,9 +147,9 @@ with st.expander(
     )
 
 
-# ============================================================
+# =========================================================
 # USER REQUEST
-# ============================================================
+# =========================================================
 
 request = st.text_area(
     "What would you like DataMind AI to do?",
@@ -240,9 +158,9 @@ request = st.text_area(
 )
 
 
-# ============================================================
-# ANALYZE BUTTON
-# ============================================================
+# =========================================================
+# ANALYZE DATASET
+# =========================================================
 
 if st.button(
     "🚀 Analyze Dataset",
@@ -260,10 +178,6 @@ if st.button(
     log_box = st.empty()
 
 
-    # --------------------------------------------------------
-    # AGENT ACTIVITY
-    # --------------------------------------------------------
-
     def log(msg):
 
         log_box.markdown(
@@ -274,21 +188,17 @@ if st.button(
             )
         )
 
+
     state.log = log
-
-
-    # --------------------------------------------------------
-    # RUN ORCHESTRATOR
-    # --------------------------------------------------------
 
     result = orchestrator.run(state)
 
     st.session_state["result"] = result
 
 
-# ============================================================
-# RESULTS
-# ============================================================
+# =========================================================
+# ANALYSIS RESULTS
+# =========================================================
 
 if "result" in st.session_state:
 
@@ -299,507 +209,333 @@ if "result" in st.session_state:
     st.header("📊 Analysis Results")
 
 
-    # ========================================================
+    # =====================================================
     # DATA QUALITY
-    # ========================================================
+    # =====================================================
 
-    st.subheader("🔍 Dataset Quality")
+    if state.quality_results:
 
-    q = state.quality_results or {}
+        with st.expander(
+            "🔍 Data Quality Analysis",
+            expanded=True
+        ):
 
-    c1, c2, c3, c4 = st.columns(4)
+            q = state.quality_results
 
-    c1.metric(
-        "Rows",
-        q.get("rows", 0)
-    )
+            col1, col2, col3, col4 = st.columns(4)
 
-    c2.metric(
-        "Columns",
-        q.get("columns", 0)
-    )
-
-    c3.metric(
-        "Missing Cells",
-        q.get("missing_cells", 0)
-    )
-
-    c4.metric(
-        "Duplicates",
-        q.get("duplicate_rows", 0)
-    )
-
-
-    # ========================================================
-    # DATA QUALITY DETAILS
-    # ========================================================
-
-    with st.expander(
-        "🔍 Data Quality Details",
-        expanded=True
-    ):
-
-        st.markdown(
-            f"""
-            ### Dataset Quality Overview
-
-            The dataset contains **{q.get("rows", 0):,} observations**
-            and **{q.get("columns", 0)} variables**.
-
-            The automated Data Quality Agent examined the dataset
-            for missing values, duplicate records, constant
-            variables, variable types and potential statistical
-            outliers.
-            """
-        )
-
-
-        # ----------------------------------------------------
-        # Missing Values
-        # ----------------------------------------------------
-
-        missing = q.get(
-            "missing_by_column",
-            {}
-        )
-
-        if missing:
-
-            st.markdown(
-                "#### ⚠️ Missing Values"
-            )
-
-            for column, info in missing.items():
-
-                st.write(
-                    f"**{column}** contains "
-                    f"{info.get('count', 0)} missing values "
-                    f"({info.get('percent', 0):.2f}%)."
+            with col1:
+                st.metric(
+                    "Rows",
+                    f"{len(df):,}"
                 )
 
-        else:
-
-            st.success(
-                "✅ No missing values were detected."
-            )
-
-
-        # ----------------------------------------------------
-        # Duplicate Rows
-        # ----------------------------------------------------
-
-        if q.get(
-            "duplicate_rows",
-            0
-        ) > 0:
-
-            st.warning(
-                f"⚠️ {q.get('duplicate_rows'):,} "
-                f"duplicate rows were detected."
-            )
-
-        else:
-
-            st.success(
-                "✅ No duplicate rows were detected."
-            )
-
-
-        # ----------------------------------------------------
-        # Constant Columns
-        # ----------------------------------------------------
-
-        constants = q.get(
-            "constant_columns",
-            []
-        )
-
-        if constants:
-
-            st.warning(
-                "Constant variables detected: "
-                + ", ".join(constants)
-            )
-
-        else:
-
-            st.success(
-                "✅ No constant variables were detected."
-            )
-
-
-        # ----------------------------------------------------
-        # Outliers
-        # ----------------------------------------------------
-
-        outliers = q.get(
-            "outliers",
-            {}
-        )
-
-        st.markdown(
-            "#### 📌 Potential Outliers"
-        )
-
-        found = False
-
-        for column, info in outliers.items():
-
-            count = info.get(
-                "iqr_outliers",
-                0
-            )
-
-            percent = info.get(
-                "outlier_percent",
-                0
-            )
-
-            if count > 0:
-
-                found = True
-
-                st.write(
-                    f"**{column}**: "
-                    f"{count:,} potential outliers "
-                    f"({percent:.2f}% of available observations)."
+            with col2:
+                st.metric(
+                    "Columns",
+                    f"{len(df.columns):,}"
                 )
 
-        if not found:
+            with col3:
+                st.metric(
+                    "Missing Cells",
+                    f"{q.get('missing_cells', 0):,}"
+                )
 
-            st.success(
-                "✅ No IQR-based outliers were detected."
+            with col4:
+                st.metric(
+                    "Duplicate Rows",
+                    f"{q.get('duplicate_rows', 0):,}"
+                )
+
+
+            st.markdown("### 📌 Findings")
+
+            findings = q.get(
+                "findings",
+                []
             )
 
+            if findings:
 
-    # ========================================================
+                for finding in findings:
+                    st.write(
+                        f"• {finding}"
+                    )
+
+            else:
+
+                st.info(
+                    "No additional data-quality findings."
+                )
+
+
+            outliers = q.get(
+                "outliers",
+                {}
+            )
+
+            if outliers:
+
+                st.markdown(
+                    "### 📦 Outlier Assessment"
+                )
+
+                outlier_rows = []
+
+                for column, info in outliers.items():
+
+                    if isinstance(info, dict):
+
+                        outlier_rows.append(
+                            {
+                                "Variable": column,
+                                "IQR Outliers": info.get(
+                                    "iqr_outliers",
+                                    0
+                                )
+                            }
+                        )
+
+                if outlier_rows:
+
+                    st.dataframe(
+                        pd.DataFrame(
+                            outlier_rows
+                        ),
+                        use_container_width=True,
+                        hide_index=True
+                    )
+
+
+    # =====================================================
     # STATISTICAL ANALYSIS
-    # ========================================================
+    # =====================================================
 
     if state.statistical_results:
-
-        stats = state.statistical_results
 
         with st.expander(
             "📈 Statistical Analysis",
             expanded=True
         ):
 
+            stats = state.statistical_results
+
             st.markdown(
-                """
-                ### Statistical Overview
-
-                The Statistical Agent examined numerical variables
-                to identify relationships between variables and
-                assess their distributional characteristics.
-
-                **Pearson correlation** measures linear relationships,
-                while **Spearman correlation** evaluates monotonic
-                relationships.
-
-                A normality assessment was also performed where
-                applicable to identify variables whose distributions
-                may differ from normality.
-                """
+                "### 📌 Statistical Findings"
             )
 
-
-            # ------------------------------------------------
-            # Correlations
-            # ------------------------------------------------
-
-            pearson = stats.get(
-                "correlations",
-                {}
-            ).get(
-                "pearson",
-                {}
+            findings = stats.get(
+                "findings",
+                []
             )
 
-            if pearson:
+            if findings:
 
-                st.markdown(
-                    "#### 🔗 Strongest Relationships"
-                )
-
-                relationships = []
-
-                for variable, values in pearson.items():
-
-                    if not isinstance(
-                        values,
-                        dict
-                    ):
-                        continue
-
-                    for other, value in values.items():
-
-                        if variable == other:
-                            continue
-
-                        try:
-
-                            relationships.append(
-                                (
-                                    variable,
-                                    other,
-                                    float(value)
-                                )
-                            )
-
-                        except (
-                            TypeError,
-                            ValueError
-                        ):
-
-                            continue
-
-
-                unique = {}
-
-                for a, b, value in relationships:
-
-                    key = tuple(
-                        sorted(
-                            [a, b]
-                        )
-                    )
-
-                    if key not in unique:
-
-                        unique[key] = value
-
-
-                strongest = sorted(
-                    [
-                        (
-                            a,
-                            b,
-                            value
-                        )
-                        for (
-                            a,
-                            b
-                        ), value in unique.items()
-                    ],
-                    key=lambda x: abs(x[2]),
-                    reverse=True
-                )[:5]
-
-
-                for a, b, value in strongest:
-
-                    if abs(value) >= 0.7:
-
-                        strength = "strong"
-
-                    elif abs(value) >= 0.4:
-
-                        strength = "moderate"
-
-                    else:
-
-                        strength = "weak"
-
-
-                    if value > 0:
-
-                        direction = "positive"
-
-                    elif value < 0:
-
-                        direction = "negative"
-
-                    else:
-
-                        direction = "negligible"
-
+                for finding in findings:
 
                     st.write(
-                        f"**{a} ↔ {b}** shows a "
-                        f"{strength} {direction} relationship "
-                        f"(Pearson r = {value:.3f})."
+                        f"• {finding}"
                     )
 
+            else:
 
-                # ------------------------------------------------
-                # Information Overlap
-                # ------------------------------------------------
-
-                overlap_warnings = stats.get(
-                    "overlap_warnings",
-                    []
+                st.info(
+                    "No statistical findings available."
                 )
 
-                if overlap_warnings:
 
-                    st.markdown(
-                        "#### ⚠️ Potential Information Overlap"
-                    )
-
-                    for warning in overlap_warnings:
-
-                        st.warning(
-                            warning
-                        )
-
-
-            # ------------------------------------------------
-            # Normality
-            # ------------------------------------------------
-
-            normality = stats.get(
-                "normality",
-                {}
+            top_relationships = stats.get(
+                "top_relationships",
+                []
             )
 
-            if normality:
+            if top_relationships:
 
                 st.markdown(
-                    "#### 📐 Distribution Assessment"
+                    "### 🔗 Strongest Relationships"
                 )
 
-                non_normal = [
-                    variable
-                    for variable, result
-                    in normality.items()
-                    if not result.get(
-                        "approximately_normal_at_0.05",
-                        False
-                    )
-                ]
+                relationship_rows = []
 
-                if non_normal:
+                for item in top_relationships:
+
+                    relationship_rows.append(
+                        {
+                            "Variable 1": item.get(
+                                "variable_1"
+                            ),
+                            "Variable 2": item.get(
+                                "variable_2"
+                            ),
+                            "Pearson r": item.get(
+                                "pearson_r"
+                            )
+                        }
+                    )
+
+                st.dataframe(
+                    pd.DataFrame(
+                        relationship_rows
+                    ),
+                    use_container_width=True,
+                    hide_index=True
+                )
+
+
+            non_normal = stats.get(
+                "non_normal_variables",
+                []
+            )
+
+            if non_normal:
+
+                st.markdown(
+                    "### 📊 Distributional Assessment"
+                )
+
+                st.write(
+                    "Variables showing evidence of "
+                    "non-normality:"
+                )
+
+                st.write(
+                    ", ".join(non_normal)
+                )
+
+
+            overlap = stats.get(
+                "overlap_warnings",
+                []
+            )
+
+            if overlap:
+
+                st.markdown(
+                    "### ⚠️ Information Overlap"
+                )
+
+                for warning in overlap:
 
                     st.warning(
-                        "Some numerical variables may not "
-                        "follow a normal distribution at the "
-                        "0.05 significance level."
-                    )
-
-                    st.write(
-                        "**Variables requiring attention:** "
-                        + ", ".join(non_normal)
-                    )
-
-                else:
-
-                    st.success(
-                        "No tested variables were flagged "
-                        "as significantly non-normal."
+                        warning
                     )
 
 
-    # ========================================================
+    # =====================================================
     # MACHINE LEARNING
-    # ========================================================
+    # =====================================================
 
     if state.ml_results:
 
-        ml = state.ml_results
-
         with st.expander(
-            "🤖 Machine Learning",
+            "🤖 Machine Learning Analysis",
             expanded=True
         ):
 
-            problem_type = ml.get(
-                "problem_type",
-                "unknown"
-            )
+            ml = state.ml_results
 
-            target = ml.get(
-                "target",
-                "not specified"
-            )
+            if ml.get("status") == "OK":
 
-            best_model = ml.get(
-                "best_model",
-                "not specified"
-            )
+                col1, col2, col3 = st.columns(3)
 
+                with col1:
 
-            st.markdown(
-                f"""
-                ### Machine Learning Overview
-
-                The ML Agent automatically identified the task as
-                a **{problem_type}** problem.
-
-                The selected prediction target is
-                **{target}**.
-
-                Multiple baseline machine-learning models were
-                evaluated and compared using appropriate
-                performance metrics.
-
-                The current best-performing model is
-                **{best_model}**.
-                """
-            )
-
-
-            # ------------------------------------------------
-            # Model Comparison
-            # ------------------------------------------------
-
-            models = ml.get(
-                "models",
-                {}
-            )
-
-            if models:
-
-                st.markdown(
-                    "#### 🧠 Model Comparison"
-                )
-
-                for model_name, metrics in models.items():
-
-                    st.markdown(
-                        f"**{model_name}**"
+                    st.metric(
+                        "Problem Type",
+                        str(
+                            ml.get(
+                                "problem_type",
+                                "Unknown"
+                            )
+                        ).title()
                     )
 
-                    if isinstance(
-                        metrics,
-                        dict
-                    ):
+                with col2:
 
-                        metric_text = []
-
-                        for metric_name, value in metrics.items():
-
-                            try:
-
-                                metric_text.append(
-                                    f"{metric_name}: {float(value):.4f}"
-                                )
-
-                            except (
-                                TypeError,
-                                ValueError
-                            ):
-
-                                metric_text.append(
-                                    f"{metric_name}: {value}"
-                                )
-
-                        st.write(
-                            " | ".join(metric_text)
+                    st.metric(
+                        "Target",
+                        str(
+                            ml.get(
+                                "target",
+                                "Not identified"
+                            )
                         )
+                    )
+
+                with col3:
+
+                    st.metric(
+                        "Best Model",
+                        str(
+                            ml.get(
+                                "best_model",
+                                "Not available"
+                            )
+                        )
+                    )
 
 
-            st.info(
-                "These results represent a baseline evaluation. "
-                "For research-grade modelling, cross-validation, "
-                "feature engineering and further model tuning "
-                "are recommended."
-            )
+                st.markdown(
+                    "### 📊 Model Comparison"
+                )
+
+                models = ml.get(
+                    "models",
+                    {}
+                )
+
+                if models:
+
+                    model_rows = []
+
+                    for model_name, metrics in models.items():
+
+                        row = {
+                            "Model": model_name
+                        }
+
+                        if isinstance(metrics, dict):
+
+                            for metric_name, value in metrics.items():
+
+                                if isinstance(
+                                    value,
+                                    (int, float)
+                                ):
+
+                                    row[
+                                        metric_name
+                                    ] = round(
+                                        value,
+                                        4
+                                    )
+
+                        model_rows.append(row)
 
 
-    # ========================================================
+                    st.dataframe(
+                        pd.DataFrame(
+                            model_rows
+                        ),
+                        use_container_width=True,
+                        hide_index=True
+                    )
+
+            else:
+
+                st.warning(
+                    ml.get(
+                        "message",
+                        "Machine-learning analysis "
+                        "could not be completed."
+                    )
+                )
+
+
+    # =====================================================
     # VISUALIZATIONS
-    # ========================================================
+    # =====================================================
 
     if state.visualization_results:
 
@@ -849,136 +585,154 @@ if "result" in st.session_state:
                 )
 
 
-    # ========================================================
+    # =====================================================
     # REVIEWER
-    # ========================================================
+    # =====================================================
 
-    with st.expander(
-        "🛡️ Reviewer / Reliability",
-        expanded=True
-    ):
+    if state.reviewer_results:
 
-        review = state.reviewer_results or {}
+        with st.expander(
+            "🧐 Reliability Review",
+            expanded=True
+        ):
 
-        reliability = review.get(
-            "reliability",
-            "UNKNOWN"
-        )
+            review = state.reviewer_results
 
-        reason = review.get(
-            "reason",
-            ""
-        )
-
-        st.markdown(
-            f"""
-            ### Reliability Assessment
-
-            **Overall Reliability: {reliability}**
-
-            {reason}
-            """
-        )
-
-
-        warnings = review.get(
-            "warnings",
-            []
-        )
-
-        if warnings:
-
-            st.markdown(
-                "#### ⚠️ Important Considerations"
+            reliability = review.get(
+                "reliability",
+                "UNKNOWN"
             )
 
-            for warning in warnings:
+            if reliability == "HIGH":
 
-                st.warning(
-                    warning
+                st.success(
+                    f"Reliability Assessment: {reliability}"
                 )
 
-        else:
+            elif reliability == "MODERATE":
 
-            st.success(
-                "✅ No major reliability warnings were identified."
+                st.warning(
+                    f"Reliability Assessment: {reliability}"
+                )
+
+            else:
+
+                st.error(
+                    f"Reliability Assessment: {reliability}"
+                )
+
+
+            reason = review.get(
+                "reason"
             )
 
+            if reason:
 
-    # ========================================================
+                st.write(
+                    reason
+                )
+
+
+            warnings = review.get(
+                "warnings",
+                []
+            )
+
+            if warnings:
+
+                st.markdown(
+                    "### ⚠️ Considerations"
+                )
+
+                for warning in warnings:
+
+                    st.write(
+                        f"• {warning}"
+                    )
+
+            else:
+
+                st.success(
+                    "No major concerns were identified."
+                )
+
+
+    # =====================================================
     # FINAL REPORT
-    # ========================================================
+    # =====================================================
 
     st.subheader(
         "📝 Final Report"
     )
 
-    st.markdown(
-        state.final_report
-    )
+    if state.final_report:
+
+        st.markdown(
+            state.final_report
+        )
+
+    else:
+
+        st.info(
+            "Final report is not available."
+        )
 
 
-# ============================================================
-# FOOTER
-# ============================================================
+# =========================================================
+# PROFESSIONAL FOOTER
+# =========================================================
 
-st.markdown("---")
+st.markdown(
+    """
+    <div style="
+        margin-top: 45px;
+        padding: 28px 25px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #0f172a, #1e3a8a, #0f766e);
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    ">
 
-
-footer_left, footer_center, footer_right = st.columns(
-    [1, 3, 1]
-)
-
-with footer_center:
-
-    st.markdown(
-        """
         <div style="
-            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
-            padding: 28px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(30,64,175,0.25);
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
         ">
-
-            <div style="
-                color: white;
-                font-size: 28px;
-                font-weight: 800;
-            ">
-                🧠 DataMind AI
-            </div>
-
-            <div style="
-                color: #dbeafe;
-                font-size: 15px;
-                margin-top: 6px;
-            ">
-                Autonomous Multi-Agent Data Science Assistant
-            </div>
-
-            <div style="
-                color: #e5e7eb;
-                font-size: 14px;
-                margin-top: 18px;
-                line-height: 1.7;
-            ">
-                <b>Developed by Hina Ramzan & Team</b>
-                <br><br>
-                Team Members:
-                Hina Ramzan • Fayaz Ali • Nisha Shabbir •
-                Moin Afzal • Talal Azhar
-            </div>
-
-            <div style="
-                color: #94a3b8;
-                font-size: 12px;
-                margin-top: 18px;
-            ">
-                © 2026 DataMind AI Team
-            </div>
-
+            🧠 DataMind AI
         </div>
-        """,
-        unsafe_allow_html=True
-    )
+
+        <div style="
+            color: #dbeafe;
+            font-size: 15px;
+            margin-top: 7px;
+            font-weight: 500;
+        ">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+
+        <div style="
+            color: #e5e7eb;
+            font-size: 14px;
+            margin-top: 18px;
+            line-height: 1.8;
+        ">
+            <strong>Developed by Hina Ramzan &amp; Team</strong>
+            <br>
+            Team Members:
+            Hina Ramzan • Fayaz Ali • Nisha Shabbir •
+            Moin Afzal • Talal Azhar
+        </div>
+
+        <div style="
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 18px;
+        ">
+            © 2026 DataMind AI Team
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
