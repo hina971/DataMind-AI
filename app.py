@@ -19,76 +19,120 @@ st.set_page_config(
 
 
 # ============================================================
-# HEADER
+# PROFESSIONAL THEME
 # ============================================================
 
 st.markdown(
     """
     <style>
-    .header-box {
-        background: linear-gradient(135deg, #0f172a, #1d4ed8);
-        padding: 28px;
-        border-radius: 18px;
+
+    /* ---------- Header ---------- */
+
+    .datamind-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a 0%,
+            #1e3a8a 50%,
+            #2563eb 100%
+        );
+
+        padding: 30px 20px;
+        border-radius: 20px;
+
         text-align: center;
+
+        margin-top: 10px;
         margin-bottom: 25px;
-        box-shadow: 0 8px 25px rgba(30, 64, 175, 0.25);
+
+        box-shadow:
+            0 8px 25px rgba(30, 64, 175, 0.25);
     }
 
-    .header-title {
+
+    .datamind-title {
         color: white;
-        font-size: 38px;
+        font-size: 40px;
         font-weight: 800;
         margin-bottom: 6px;
     }
 
-    .header-subtitle {
+
+    .datamind-subtitle {
         color: #dbeafe;
         font-size: 17px;
+        font-weight: 400;
     }
 
-    .footer-box {
-        background: linear-gradient(135deg, #111827, #1e3a8a);
-        padding: 28px;
-        border-radius: 18px;
+
+    /* ---------- Footer ---------- */
+
+    .datamind-footer {
+        background: linear-gradient(
+            135deg,
+            #0f172a 0%,
+            #172554 50%,
+            #1e40af 100%
+        );
+
+        padding: 28px 20px;
+        border-radius: 20px;
+
         text-align: center;
+
         margin-top: 35px;
-        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.25);
+        margin-bottom: 10px;
+
+        box-shadow:
+            0 8px 25px rgba(15, 23, 42, 0.25);
     }
 
-    .footer-title {
+
+    .datamind-footer-title {
         color: white;
-        font-size: 27px;
+        font-size: 28px;
         font-weight: 800;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
 
-    .footer-subtitle {
+
+    .datamind-footer-subtitle {
         color: #dbeafe;
         font-size: 15px;
         margin-bottom: 15px;
     }
 
-    .footer-team {
+
+    .datamind-footer-team {
         color: #e5e7eb;
         font-size: 14px;
         line-height: 1.7;
     }
 
-    .footer-copy {
+
+    .datamind-footer-copy {
         color: #94a3b8;
         font-size: 12px;
         margin-top: 15px;
     }
+
     </style>
     """,
     unsafe_allow_html=True
 )
 
+
+# ============================================================
+# HEADER
+# ============================================================
+
 st.markdown(
     """
-    <div class="header-box">
-        <div class="header-title">🧠 DataMind AI</div>
-        <div class="header-subtitle">
+    <div class="datamind-header">
+        <div class="datamind-title">
+            🧠 DataMind AI
+        </div>
+
+        <div class="datamind-subtitle">
             Autonomous Multi-Agent Data Science Assistant
         </div>
     </div>
@@ -311,7 +355,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # MISSING VALUES
+        # Missing Values
         # ----------------------------------------------------
 
         missing = q.get(
@@ -341,7 +385,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # DUPLICATES
+        # Duplicate Rows
         # ----------------------------------------------------
 
         if q.get(
@@ -362,7 +406,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # CONSTANT COLUMNS
+        # Constant Columns
         # ----------------------------------------------------
 
         constants = q.get(
@@ -385,7 +429,7 @@ if "result" in st.session_state:
 
 
         # ----------------------------------------------------
-        # OUTLIERS
+        # Outliers
         # ----------------------------------------------------
 
         outliers = q.get(
@@ -461,7 +505,7 @@ if "result" in st.session_state:
 
 
             # ------------------------------------------------
-            # CORRELATIONS
+            # Correlations
             # ------------------------------------------------
 
             pearson = stats.get(
@@ -510,8 +554,6 @@ if "result" in st.session_state:
 
                             continue
 
-
-                # Remove duplicate pairs
 
                 unique = {}
 
@@ -581,7 +623,7 @@ if "result" in st.session_state:
 
 
                 # ------------------------------------------------
-                # INFORMATION OVERLAP
+                # Information Overlap
                 # ------------------------------------------------
 
                 overlap_warnings = stats.get(
@@ -603,7 +645,7 @@ if "result" in st.session_state:
 
 
             # ------------------------------------------------
-            # NORMALITY
+            # Normality
             # ------------------------------------------------
 
             normality = stats.get(
@@ -698,7 +740,7 @@ if "result" in st.session_state:
 
 
             # ------------------------------------------------
-            # MODEL COMPARISON
+            # Model Comparison
             # ------------------------------------------------
 
             models = ml.get(
@@ -880,31 +922,63 @@ if "result" in st.session_state:
 # FOOTER
 # ============================================================
 
-st.markdown(
-    """
-    <div class="footer-box">
+st.markdown("---")
 
-        <div class="footer-title">
-            🧠 DataMind AI
-        </div>
 
-        <div class="footer-subtitle">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-
-        <div class="footer-team">
-            <strong>Developed by Hina Ramzan & Team</strong>
-            <br><br>
-            Team Members:
-            Hina Ramzan • Fayaz Ali • Nisha Shabbir •
-            Moin Afzal • Talal Azhar
-        </div>
-
-        <div class="footer-copy">
-            © 2026 DataMind AI Team
-        </div>
-
-    </div>
-    """,
-    unsafe_allow_html=True
+footer_left, footer_center, footer_right = st.columns(
+    [1, 3, 1]
 )
+
+with footer_center:
+
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+            padding: 28px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(30,64,175,0.25);
+        ">
+
+            <div style="
+                color: white;
+                font-size: 28px;
+                font-weight: 800;
+            ">
+                🧠 DataMind AI
+            </div>
+
+            <div style="
+                color: #dbeafe;
+                font-size: 15px;
+                margin-top: 6px;
+            ">
+                Autonomous Multi-Agent Data Science Assistant
+            </div>
+
+            <div style="
+                color: #e5e7eb;
+                font-size: 14px;
+                margin-top: 18px;
+                line-height: 1.7;
+            ">
+                <b>Developed by Hina Ramzan & Team</b>
+                <br><br>
+                Team Members:
+                Hina Ramzan • Fayaz Ali • Nisha Shabbir •
+                Moin Afzal • Talal Azhar
+            </div>
+
+            <div style="
+                color: #94a3b8;
+                font-size: 12px;
+                margin-top: 18px;
+            ">
+                © 2026 DataMind AI Team
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
