@@ -33,12 +33,11 @@ with header_center:
         # 🧠 DataMind AI
         """,
         unsafe_allow_html=False
-    )
 
     st.caption(
         "Autonomous Multi-Agent Data Science Assistant"
     )
-
+    )
 
 # ============================================================
 # SIDEBAR
