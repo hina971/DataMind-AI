@@ -22,22 +22,32 @@ st.set_page_config(
 # HEADER
 # ============================================================
 
-header_left, header_center, header_right = st.columns(
-    [1, 3, 1]
+st.markdown(
+    """
+    <div style="
+        text-align: center;
+        padding: 15px 0 25px 0;
+    ">
+
+        <h1 style="
+            margin-bottom: 6px;
+            font-size: 42px;
+        ">
+            🧠 DataMind AI
+        </h1>
+
+        <p style="
+            font-size: 18px;
+            margin-top: 0;
+            opacity: 0.8;
+        ">
+            Autonomous Multi-Agent Data Science Assistant
+        </p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-with header_center:
-
-    st.markdown(
-        """
-        # 🧠 DataMind AI
-        """,
-        unsafe_allow_html=False
-    )
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
 
 
 # ============================================================
@@ -158,7 +168,6 @@ if st.button(
 
     log_box = st.empty()
 
-
     # --------------------------------------------------------
     # Agent Activity Display
     # --------------------------------------------------------
@@ -174,7 +183,6 @@ if st.button(
         )
 
     state.log = log
-
 
     # --------------------------------------------------------
     # Run Orchestrator
@@ -731,9 +739,7 @@ if "result" in st.session_state:
                         gap="medium"
                     )
 
-
                     # First figure
-
                     with col1:
 
                         st.image(
@@ -741,9 +747,7 @@ if "result" in st.session_state:
                             width=400
                         )
 
-
                     # Second figure
-
                     if i + 1 < len(figures):
 
                         with col2:
@@ -833,36 +837,53 @@ if "result" in st.session_state:
 # FOOTER
 # ============================================================
 
-st.divider()
+st.markdown(
+    """
+    <div style="
+        margin-top: 55px;
+        padding: 30px 20px;
+        text-align: center;
+        border-top: 1px solid rgba(128,128,128,0.3);
+    ">
 
+        <h2 style="
+            margin-bottom: 8px;
+            font-size: 26px;
+        ">
+            🧠 DataMind AI
+        </h2>
 
-footer_left, footer_center, footer_right = st.columns(
-    [1, 3, 1]
+        <p style="
+            font-size: 16px;
+            margin-bottom: 12px;
+        ">
+            Autonomous Multi-Agent Data Science Assistant
+        </p>
+
+        <p style="
+            margin-bottom: 8px;
+        ">
+            <strong>Developed by Hina Ramzan & Team</strong>
+        </p>
+
+        <p style="
+            font-size: 14px;
+            margin-bottom: 8px;
+        ">
+            Team Members: Hina Ramzan • Fayaz Ali •
+            Nisha Shabbir • Moin Afzal •
+            Abdul Samad • Talal Azhar
+        </p>
+
+        <p style="
+            font-size: 13px;
+            opacity: 0.7;
+            margin-top: 15px;
+        ">
+            © 2026 DataMind AI Team
+        </p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-with footer_center:
-
-    st.markdown(
-        """
-        ## 🧠 DataMind AI
-        """,
-        unsafe_allow_html=False
-    )
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
-
-    st.write(
-        "**Developed by Hina Ramzan & Team**"
-    )
-
-    st.write(
-        "Team Members: Hina Ramzan • Fayaz Ali • "
-        "Nisha Shabbir • Moin Afzal • "
-        "Abdul Samad • Talal Azhar"
-    )
-
-    st.caption(
-        "© 2026 DataMind AI Team"
-    )
