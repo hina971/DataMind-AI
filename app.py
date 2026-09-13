@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
+import streamlit.components.v1 as components
 
 from core.data_loader import load_dataframe
 from core.analysis_state import AnalysisState
@@ -24,281 +25,115 @@ st.set_page_config(
 
 components.html(
     """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <style>
+    <style>
+        body {
+            margin: 0;
+            background: transparent;
+            font-family: Arial, sans-serif;
+        }
 
-            * {
-                box-sizing: border-box;
+        .header-box {
+            height: 205px;
+            border-radius: 22px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background: linear-gradient(
+                120deg,
+                #172554,
+                #1d4ed8,
+                #2563eb,
+                #0f766e,
+                #172554
+            );
+
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .title {
+            color: white;
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 1px;
+
+            animation: titlePulse 2.5s ease-in-out infinite;
+        }
+
+        .subtitle {
+            color: #dbeafe;
+            font-size: 17px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .badge {
+            margin-top: 16px;
+            padding: 7px 18px;
+            border-radius: 30px;
+
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+
+            background: rgba(255,255,255,0.13);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
             }
 
-            body {
-                margin: 0;
-                padding: 0;
-                background: transparent;
-                font-family: Arial, sans-serif;
+            50% {
+                background-position: 100% 50%;
             }
 
-            .header-box {
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-                width: 100%;
-
-                min-height: 210px;
-
-                border-radius: 22px;
-
-                display: flex;
-
-                flex-direction: column;
-
-                justify-content: center;
-
-                align-items: center;
-
-                text-align: center;
-
-                background:
-                    linear-gradient(
-                        120deg,
-                        #172554,
-                        #1d4ed8,
-                        #2563eb,
-                        #0f766e,
-                        #172554
-                    );
-
-                background-size: 400% 400%;
-
-                animation:
-                    gradientAnimation 8s ease infinite;
-
-                box-shadow:
-                    0 12px 30px rgba(0, 0, 0, 0.25);
-
-                overflow: hidden;
-
-                position: relative;
+        @keyframes titlePulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow:
+                    0 0 5px rgba(255,255,255,0.2);
             }
 
-
-            .header-box::before {
-
-                content: "";
-
-                position: absolute;
-
-                width: 180px;
-
-                height: 180px;
-
-                border-radius: 50%;
-
-                background: rgba(255,255,255,0.08);
-
-                top: -70px;
-
-                left: -50px;
-
-                animation: floatOne 6s ease-in-out infinite;
+            50% {
+                transform: scale(1.04);
+                text-shadow:
+                    0 0 12px rgba(255,255,255,0.7),
+                    0 0 30px rgba(147,197,253,0.7);
             }
+        }
+    </style>
 
+    <div class="header-box">
 
-            .header-box::after {
-
-                content: "";
-
-                position: absolute;
-
-                width: 220px;
-
-                height: 220px;
-
-                border-radius: 50%;
-
-                background: rgba(255,255,255,0.06);
-
-                bottom: -100px;
-
-                right: -50px;
-
-                animation: floatTwo 7s ease-in-out infinite;
-            }
-
-
-            .title {
-
-                position: relative;
-
-                z-index: 2;
-
-                color: white;
-
-                font-size: 42px;
-
-                font-weight: 900;
-
-                letter-spacing: 1px;
-
-                margin-bottom: 10px;
-
-                animation:
-                    titlePulse 2.5s ease-in-out infinite;
-            }
-
-
-            .subtitle {
-
-                position: relative;
-
-                z-index: 2;
-
-                color: #dbeafe;
-
-                font-size: 17px;
-
-                font-weight: 500;
-
-                letter-spacing: 0.5px;
-
-                margin-bottom: 16px;
-            }
-
-
-            .badge {
-
-                position: relative;
-
-                z-index: 2;
-
-                display: inline-block;
-
-                padding: 7px 18px;
-
-                border-radius: 30px;
-
-                color: white;
-
-                font-size: 13px;
-
-                font-weight: 600;
-
-                background: rgba(255,255,255,0.13);
-
-                border: 1px solid rgba(255,255,255,0.25);
-
-                backdrop-filter: blur(6px);
-
-                animation:
-                    badgeGlow 3s ease-in-out infinite;
-            }
-
-
-            @keyframes gradientAnimation {
-
-                0% {
-                    background-position: 0% 50%;
-                }
-
-                50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
-                }
-
-            }
-
-
-            @keyframes titlePulse {
-
-                0%, 100% {
-
-                    transform: scale(1);
-
-                    text-shadow:
-                        0 0 5px rgba(255,255,255,0.2),
-                        0 0 15px rgba(147,197,253,0.2);
-                }
-
-                50% {
-
-                    transform: scale(1.04);
-
-                    text-shadow:
-                        0 0 10px rgba(255,255,255,0.6),
-                        0 0 30px rgba(147,197,253,0.7);
-                }
-
-            }
-
-
-            @keyframes badgeGlow {
-
-                0%, 100% {
-                    box-shadow:
-                        0 0 5px rgba(255,255,255,0.05);
-                }
-
-                50% {
-                    box-shadow:
-                        0 0 18px rgba(255,255,255,0.18);
-                }
-
-            }
-
-
-            @keyframes floatOne {
-
-                0%, 100% {
-                    transform: translate(0, 0);
-                }
-
-                50% {
-                    transform: translate(40px, 25px);
-                }
-
-            }
-
-
-            @keyframes floatTwo {
-
-                0%, 100% {
-                    transform: translate(0, 0);
-                }
-
-                50% {
-                    transform: translate(-35px, -20px);
-                }
-
-            }
-
-        </style>
-    </head>
-
-    <body>
-
-        <div class="header-box">
-
-            <div class="title">
-                🧠 DataMind AI
-            </div>
-
-            <div class="subtitle">
-                Autonomous Multi-Agent Data Science Assistant
-            </div>
-
-            <div class="badge">
-                ✨ Intelligent • Autonomous • Data-Driven
-            </div>
-
+        <div class="title">
+            🧠 DataMind AI
         </div>
 
-    </body>
-    </html>
+        <div class="subtitle">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+
+        <div class="badge">
+            ✨ Intelligent • Autonomous • Data-Driven
+        </div>
+
+    </div>
     """,
-    height=235,
+    height=225,
     scrolling=False
 )
 
