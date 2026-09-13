@@ -18,27 +18,160 @@ st.set_page_config(
 )
 
 
-# ============================================================
-# HEADER
-# ============================================================
+# =========================================================
+# FANCY ANIMATED HEADER
+# =========================================================
 
-header_left, header_center, header_right = st.columns(
-    [1, 3, 1]
+st.markdown(
+    """
+    <style>
+
+    .datamind-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #2563eb,
+            #0f766e
+        );
+
+        background-size: 300% 300%;
+
+        animation: gradientMove 8s ease infinite;
+
+        padding: 32px 25px;
+
+        border-radius: 20px;
+
+        text-align: center;
+
+        margin-top: 10px;
+        margin-bottom: 25px;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.25);
+
+        border: 1px solid rgba(255,255,255,0.15);
+    }
+
+
+    .datamind-title {
+
+        font-size: 42px;
+
+        font-weight: 900;
+
+        color: white;
+
+        letter-spacing: 1px;
+
+        text-shadow:
+            0 0 10px rgba(255,255,255,0.35),
+            0 0 20px rgba(96,165,250,0.35);
+
+        animation:
+            titleGlow 2.5s ease-in-out infinite alternate;
+    }
+
+
+    .datamind-subtitle {
+
+        margin-top: 8px;
+
+        font-size: 17px;
+
+        font-weight: 500;
+
+        color: #dbeafe;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    .datamind-badge {
+
+        display: inline-block;
+
+        margin-top: 15px;
+
+        padding: 6px 15px;
+
+        border-radius: 30px;
+
+        background: rgba(255,255,255,0.12);
+
+        border: 1px solid rgba(255,255,255,0.2);
+
+        color: #e0f2fe;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        backdrop-filter: blur(5px);
+    }
+
+
+    @keyframes gradientMove {
+
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+
+    }
+
+
+    @keyframes titleGlow {
+
+        from {
+
+            transform: scale(1);
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.25),
+                0 0 15px rgba(96,165,250,0.25);
+        }
+
+        to {
+
+            transform: scale(1.025);
+
+            text-shadow:
+                0 0 15px rgba(255,255,255,0.65),
+                0 0 30px rgba(96,165,250,0.65);
+        }
+
+    }
+
+    </style>
+
+
+    <div class="datamind-header">
+
+        <div class="datamind-title">
+            🧠 DataMind AI
+        </div>
+
+        <div class="datamind-subtitle">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+
+        <div class="datamind-badge">
+            ✨ Intelligent • Autonomous • Data-Driven
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-with header_center:
-
-    st.markdown(
-        """
-        # 🧠 DataMind AI
-        """,
-        unsafe_allow_html=False
-    )
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
-
 
 # ============================================================
 # SIDEBAR
