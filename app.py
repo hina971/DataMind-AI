@@ -22,22 +22,40 @@ st.set_page_config(
 # HEADER
 # ============================================================
 
-header_left, header_center, header_right = st.columns(
-    [1, 3, 1]
+st.markdown(
+    """
+    <style>
+    .datamind-header {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+
+    .datamind-header-title {
+        font-size: 42px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .datamind-header-subtitle {
+        font-size: 18px;
+        margin-top: 6px;
+        opacity: 0.8;
+    }
+    </style>
+
+    <div class="datamind-header">
+        <div class="datamind-header-title">
+            🧠 DataMind AI
+        </div>
+
+        <div class="datamind-header-subtitle">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-with header_center:
-
-    st.markdown(
-        """
-        # 🧠 DataMind AI
-        """,
-        unsafe_allow_html=False
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
-    )
 
 # ============================================================
 # SIDEBAR
