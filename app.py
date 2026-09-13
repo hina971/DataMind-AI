@@ -19,20 +19,194 @@ st.set_page_config(
 
 
 # ============================================================
+# CUSTOM PROFESSIONAL THEME
+# ============================================================
+
+st.markdown(
+    """
+    <style>
+
+    /* ======================================================
+       MAIN APP BACKGROUND
+       ====================================================== */
+
+    .stApp {
+        background: linear-gradient(
+            135deg,
+            #f8fbff 0%,
+            #eef5ff 50%,
+            #f8f9ff 100%
+        );
+    }
+
+
+    /* ======================================================
+       HEADER CARD
+       ====================================================== */
+
+    .datamind-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #2563eb
+        );
+
+        padding: 32px 25px;
+        border-radius: 20px;
+
+        text-align: center;
+
+        margin-top: 10px;
+        margin-bottom: 28px;
+
+        box-shadow:
+            0 10px 30px rgba(37, 99, 235, 0.25);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+
+    .datamind-title {
+        font-size: 42px;
+        font-weight: 800;
+
+        color: white;
+
+        letter-spacing: 0.5px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .datamind-subtitle {
+        font-size: 18px;
+        font-weight: 400;
+
+        color: rgba(255, 255, 255, 0.88);
+
+        letter-spacing: 0.3px;
+    }
+
+
+    /* ======================================================
+       FOOTER CARD
+       ====================================================== */
+
+    .datamind-footer {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #172554,
+            #1e40af
+        );
+
+        padding: 30px 25px;
+
+        border-radius: 20px;
+
+        text-align: center;
+
+        margin-top: 35px;
+        margin-bottom: 15px;
+
+        box-shadow:
+            0 10px 30px rgba(15, 23, 42, 0.25);
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+
+    .footer-title {
+        font-size: 28px;
+        font-weight: 750;
+
+        color: white;
+
+        margin-bottom: 8px;
+    }
+
+
+    .footer-subtitle {
+        font-size: 15px;
+
+        color: rgba(255, 255, 255, 0.82);
+
+        margin-bottom: 18px;
+    }
+
+
+    .footer-team {
+        font-size: 14px;
+
+        color: rgba(255, 255, 255, 0.78);
+
+        line-height: 1.7;
+    }
+
+
+    .footer-copy {
+        font-size: 12px;
+
+        color: rgba(255, 255, 255, 0.60);
+
+        margin-top: 18px;
+    }
+
+
+    /* ======================================================
+       SECTION SPACING
+       ====================================================== */
+
+    div[data-testid="stExpander"] {
+        border-radius: 14px;
+    }
+
+
+    /* ======================================================
+       METRIC CARDS
+       ====================================================== */
+
+    div[data-testid="stMetric"] {
+        background: white;
+
+        padding: 15px;
+
+        border-radius: 14px;
+
+        box-shadow:
+            0 4px 14px rgba(15, 23, 42, 0.08);
+
+        border: 1px solid #e5e7eb;
+    }
+
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# ============================================================
 # HEADER
 # ============================================================
 
-header_left, header_center, header_right = st.columns(
-    [1, 2, 1]
+st.markdown(
+    """
+    <div class="datamind-header">
+
+        <div class="datamind-title">
+            🧠 DataMind AI
+        </div>
+
+        <div class="datamind-subtitle">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-with header_center:
-
-    st.write("🧠 DataMind AI")
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
 
 
 # ============================================================
@@ -449,9 +623,7 @@ if "result" in st.session_state:
                             continue
 
 
-                # ------------------------------------------------
                 # Remove duplicate pairs
-                # ------------------------------------------------
 
                 unique = {}
 
@@ -729,8 +901,6 @@ if "result" in st.session_state:
                     )
 
 
-                    # First figure
-
                     with col1:
 
                         st.image(
@@ -738,8 +908,6 @@ if "result" in st.session_state:
                             width=400
                         )
 
-
-                    # Second figure
 
                     if i + 1 < len(figures):
 
@@ -830,33 +998,31 @@ if "result" in st.session_state:
 # FOOTER
 # ============================================================
 
-st.divider()
+st.markdown(
+    """
+    <div class="datamind-footer">
 
+        <div class="footer-title">
+            🧠 DataMind AI
+        </div>
 
-footer_left, footer_center, footer_right = st.columns(
-    [1, 3, 1]
+        <div class="footer-subtitle">
+            Autonomous Multi-Agent Data Science Assistant
+        </div>
+
+        <div class="footer-team">
+            <strong>Developed by Hina Ramzan & Team</strong>
+            <br><br>
+            Team Members:
+            Hina Ramzan • Fayaz Ali • Nisha Shabbir •
+            Moin Afzal • Talal Azhar
+        </div>
+
+        <div class="footer-copy">
+            © 2026 DataMind AI Team
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-with footer_center:
-
-    st.write(
-        "🧠 DataMind AI"
-    )
-
-    st.caption(
-        "Autonomous Multi-Agent Data Science Assistant"
-    )
-
-    st.write(
-        "**Developed by Hina Ramzan & Team**"
-    )
-
-    st.write(
-        "Team Members: Hina Ramzan • Fayaz Ali • "
-        "Nisha Shabbir • Moin Afzal • "
-        "Talal Azhar"
-    )
-
-    st.caption(
-        "© 2026 DataMind AI Team"
-    )
