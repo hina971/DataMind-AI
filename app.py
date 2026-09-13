@@ -19,158 +19,287 @@ st.set_page_config(
 
 
 # =========================================================
-# FANCY ANIMATED HEADER
+# DATAMIND AI — ANIMATED HEADER
 # =========================================================
 
-st.markdown(
+components.html(
     """
-    <style>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
 
-    .datamind-header {
-        background: linear-gradient(
-            135deg,
-            #0f172a,
-            #1e3a8a,
-            #2563eb,
-            #0f766e
-        );
+            * {
+                box-sizing: border-box;
+            }
 
-        background-size: 300% 300%;
+            body {
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                font-family: Arial, sans-serif;
+            }
 
-        animation: gradientMove 8s ease infinite;
+            .header-box {
 
-        padding: 32px 25px;
+                width: 100%;
 
-        border-radius: 20px;
+                min-height: 210px;
 
-        text-align: center;
+                border-radius: 22px;
 
-        margin-top: 10px;
-        margin-bottom: 25px;
+                display: flex;
 
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.25);
+                flex-direction: column;
 
-        border: 1px solid rgba(255,255,255,0.15);
-    }
+                justify-content: center;
 
+                align-items: center;
 
-    .datamind-title {
+                text-align: center;
 
-        font-size: 42px;
+                background:
+                    linear-gradient(
+                        120deg,
+                        #172554,
+                        #1d4ed8,
+                        #2563eb,
+                        #0f766e,
+                        #172554
+                    );
 
-        font-weight: 900;
+                background-size: 400% 400%;
 
-        color: white;
+                animation:
+                    gradientAnimation 8s ease infinite;
 
-        letter-spacing: 1px;
+                box-shadow:
+                    0 12px 30px rgba(0, 0, 0, 0.25);
 
-        text-shadow:
-            0 0 10px rgba(255,255,255,0.35),
-            0 0 20px rgba(96,165,250,0.35);
+                overflow: hidden;
 
-        animation:
-            titleGlow 2.5s ease-in-out infinite alternate;
-    }
-
-
-    .datamind-subtitle {
-
-        margin-top: 8px;
-
-        font-size: 17px;
-
-        font-weight: 500;
-
-        color: #dbeafe;
-
-        letter-spacing: 0.5px;
-    }
+                position: relative;
+            }
 
 
-    .datamind-badge {
+            .header-box::before {
 
-        display: inline-block;
+                content: "";
 
-        margin-top: 15px;
+                position: absolute;
 
-        padding: 6px 15px;
+                width: 180px;
 
-        border-radius: 30px;
+                height: 180px;
 
-        background: rgba(255,255,255,0.12);
+                border-radius: 50%;
 
-        border: 1px solid rgba(255,255,255,0.2);
+                background: rgba(255,255,255,0.08);
 
-        color: #e0f2fe;
+                top: -70px;
 
-        font-size: 13px;
+                left: -50px;
 
-        font-weight: 600;
-
-        backdrop-filter: blur(5px);
-    }
+                animation: floatOne 6s ease-in-out infinite;
+            }
 
 
-    @keyframes gradientMove {
+            .header-box::after {
 
-        0% {
-            background-position: 0% 50%;
-        }
+                content: "";
 
-        50% {
-            background-position: 100% 50%;
-        }
+                position: absolute;
 
-        100% {
-            background-position: 0% 50%;
-        }
+                width: 220px;
 
-    }
+                height: 220px;
 
+                border-radius: 50%;
 
-    @keyframes titleGlow {
+                background: rgba(255,255,255,0.06);
 
-        from {
+                bottom: -100px;
 
-            transform: scale(1);
+                right: -50px;
 
-            text-shadow:
-                0 0 8px rgba(255,255,255,0.25),
-                0 0 15px rgba(96,165,250,0.25);
-        }
-
-        to {
-
-            transform: scale(1.025);
-
-            text-shadow:
-                0 0 15px rgba(255,255,255,0.65),
-                0 0 30px rgba(96,165,250,0.65);
-        }
-
-    }
-
-    </style>
+                animation: floatTwo 7s ease-in-out infinite;
+            }
 
 
-    <div class="datamind-header">
+            .title {
 
-        <div class="datamind-title">
-            🧠 DataMind AI
+                position: relative;
+
+                z-index: 2;
+
+                color: white;
+
+                font-size: 42px;
+
+                font-weight: 900;
+
+                letter-spacing: 1px;
+
+                margin-bottom: 10px;
+
+                animation:
+                    titlePulse 2.5s ease-in-out infinite;
+            }
+
+
+            .subtitle {
+
+                position: relative;
+
+                z-index: 2;
+
+                color: #dbeafe;
+
+                font-size: 17px;
+
+                font-weight: 500;
+
+                letter-spacing: 0.5px;
+
+                margin-bottom: 16px;
+            }
+
+
+            .badge {
+
+                position: relative;
+
+                z-index: 2;
+
+                display: inline-block;
+
+                padding: 7px 18px;
+
+                border-radius: 30px;
+
+                color: white;
+
+                font-size: 13px;
+
+                font-weight: 600;
+
+                background: rgba(255,255,255,0.13);
+
+                border: 1px solid rgba(255,255,255,0.25);
+
+                backdrop-filter: blur(6px);
+
+                animation:
+                    badgeGlow 3s ease-in-out infinite;
+            }
+
+
+            @keyframes gradientAnimation {
+
+                0% {
+                    background-position: 0% 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0% 50%;
+                }
+
+            }
+
+
+            @keyframes titlePulse {
+
+                0%, 100% {
+
+                    transform: scale(1);
+
+                    text-shadow:
+                        0 0 5px rgba(255,255,255,0.2),
+                        0 0 15px rgba(147,197,253,0.2);
+                }
+
+                50% {
+
+                    transform: scale(1.04);
+
+                    text-shadow:
+                        0 0 10px rgba(255,255,255,0.6),
+                        0 0 30px rgba(147,197,253,0.7);
+                }
+
+            }
+
+
+            @keyframes badgeGlow {
+
+                0%, 100% {
+                    box-shadow:
+                        0 0 5px rgba(255,255,255,0.05);
+                }
+
+                50% {
+                    box-shadow:
+                        0 0 18px rgba(255,255,255,0.18);
+                }
+
+            }
+
+
+            @keyframes floatOne {
+
+                0%, 100% {
+                    transform: translate(0, 0);
+                }
+
+                50% {
+                    transform: translate(40px, 25px);
+                }
+
+            }
+
+
+            @keyframes floatTwo {
+
+                0%, 100% {
+                    transform: translate(0, 0);
+                }
+
+                50% {
+                    transform: translate(-35px, -20px);
+                }
+
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <div class="header-box">
+
+            <div class="title">
+                🧠 DataMind AI
+            </div>
+
+            <div class="subtitle">
+                Autonomous Multi-Agent Data Science Assistant
+            </div>
+
+            <div class="badge">
+                ✨ Intelligent • Autonomous • Data-Driven
+            </div>
+
         </div>
 
-        <div class="datamind-subtitle">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-
-        <div class="datamind-badge">
-            ✨ Intelligent • Autonomous • Data-Driven
-        </div>
-
-    </div>
+    </body>
+    </html>
     """,
-    unsafe_allow_html=True
+    height=235,
+    scrolling=False
 )
 
 # ============================================================
