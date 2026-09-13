@@ -22,40 +22,18 @@ st.set_page_config(
 # HEADER
 # ============================================================
 
-st.markdown(
-    """
-    <style>
-    .datamind-header {
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 30px;
-    }
-
-    .datamind-header-title {
-        font-size: 42px;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    .datamind-header-subtitle {
-        font-size: 18px;
-        margin-top: 6px;
-        opacity: 0.8;
-    }
-    </style>
-
-    <div class="datamind-header">
-        <div class="datamind-header-title">
-            🧠 DataMind AI
-        </div>
-
-        <div class="datamind-header-subtitle">
-            Autonomous Multi-Agent Data Science Assistant
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
+header_left, header_center, header_right = st.columns(
+    [1, 2, 1]
 )
+
+with header_center:
+
+    st.write("🧠 DataMind AI")
+
+    st.caption(
+        "Autonomous Multi-Agent Data Science Assistant"
+    )
+
 
 # ============================================================
 # SIDEBAR
@@ -471,7 +449,9 @@ if "result" in st.session_state:
                             continue
 
 
+                # ------------------------------------------------
                 # Remove duplicate pairs
+                # ------------------------------------------------
 
                 unique = {}
 
@@ -859,11 +839,8 @@ footer_left, footer_center, footer_right = st.columns(
 
 with footer_center:
 
-    st.markdown(
-        """
-        ## 🧠 DataMind AI
-        """,
-        unsafe_allow_html=False
+    st.write(
+        "🧠 DataMind AI"
     )
 
     st.caption(
@@ -877,7 +854,7 @@ with footer_center:
     st.write(
         "Team Members: Hina Ramzan • Fayaz Ali • "
         "Nisha Shabbir • Moin Afzal • "
-        "Abdul Samad • Talal Azhar"
+        "Talal Azhar"
     )
 
     st.caption(
